@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:latihan_ui/Utils/custom_color.dart';
+
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _registerBody(context),
+    );
+  }
+
+
+  // ini register body
+  Widget _registerBody(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(left: 20),
+      color: Colors.white,
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 110),
+            child: Row(
+              children: [
+                Text("Hai, ", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28),),
+                Text("Selamat Datang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28, fontWeight: FontWeight.bold),),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
