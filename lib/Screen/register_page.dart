@@ -48,10 +48,11 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ResUseAbleWidget().primaryColorText("Password"),
-                ResUseAbleWidget().primaryColorText("Lupa password anda ?")
+                Text("Lupa password anda ?", style:  TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w600),),
               ],
             ),
-          )
+          ),
+          ResUseAbleWidget().customForm(_emailController, "Masukan Password Anda"),
         ],
       ),
     );
