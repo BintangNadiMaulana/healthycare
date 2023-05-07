@@ -20,10 +20,12 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+
   // ini register body
   Widget _registerBody(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 20),
+      color: Colors.white,
       child: ListView(
         children: [
           // text hai, selamat datang
@@ -38,7 +40,17 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           Image.asset("assets/images/login_image.png"),
           ResUseAbleWidget().primaryColorText("Email"),
-          ResUseAbleWidget().customForm(_emailController, "Masukan Email Anda")
+          ResUseAbleWidget().customForm(_emailController, "Masukan Email Anda"),
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ResUseAbleWidget().primaryColorText("Password"),
+                ResUseAbleWidget().primaryColorText("Lupa password anda ?")
+              ],
+            ),
+          )
         ],
       ),
     );
