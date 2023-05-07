@@ -25,7 +25,6 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _registerBody(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 20),
-      color: Colors.white,
       child: ListView(
         children: [
           // text hai, selamat datang
