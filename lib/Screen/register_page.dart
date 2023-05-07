@@ -29,14 +29,16 @@ class _RegisterPageState extends State<RegisterPage> {
         children: [
           // text hai, selamat datang
           Padding(
-            padding: const EdgeInsets.only(top: 110),
+            padding: const EdgeInsets.only(top: 110, bottom: 4),
             child: Row(
               children: [
                 Text("Hai, ", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28),),
                 Text("Selamat Datang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28, fontWeight: FontWeight.bold),),
               ],
+
             ),
           ),
+          Text("Silahkan login untuk melanjutkan", style: TextStyle(color: CustomColor.secondaryColor, fontSize: 12, fontWeight: FontWeight.w600)),
           Image.asset("assets/images/login_image.png"),
           ResUseAbleWidget().primaryColorText("Email"),
           ResUseAbleWidget().customForm(_emailController, "Masukan Email Anda"),
