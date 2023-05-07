@@ -53,6 +53,20 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
           ResUseAbleWidget().customForm(_emailController, "Masukan Password Anda"),
+          Padding(
+            padding: const EdgeInsets.only(top: 40, bottom: 30),
+            child: ResUseAbleWidget().customMainButton("Login", () { }),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 70, right: 70, bottom: 41),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text("Belum punya akun ?", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w400),),
+                Text("Daftar sekarang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14,fontWeight: FontWeight.w600),)
+              ],
+            ),
+          ),
         ],
       ),
     );
