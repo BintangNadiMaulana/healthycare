@@ -16,13 +16,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _registerBody(context),
+      body: _loginBody(context),
     );
   }
 
 
   // ini register body
-  Widget _registerBody(BuildContext context) {
+  Widget _loginBody(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 20),
       child: ListView(
@@ -63,7 +63,12 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text("Belum punya akun ?", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w400),),
-                Text("Daftar sekarang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14,fontWeight: FontWeight.w600),)
+                GestureDetector(
+                    // todo tugas mas bintang tambahkan route navigator ke halaman register
+                    onTap: (){
+
+                    },
+                    child: Text("Daftar sekarang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14,fontWeight: FontWeight.w600),))
               ],
             ),
           ),
