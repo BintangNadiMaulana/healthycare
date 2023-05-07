@@ -42,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ResUseAbleWidget().primaryColorText("Email"),
           ResUseAbleWidget().customForm(_emailController, "Masukan Email Anda"),
           Padding(
-            padding: const EdgeInsets.only(right: 20),
+            padding: const EdgeInsets.only(right: 20, top: 40),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
