@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:latihan_ui/Utils/Widgets/reusable_widget.dart';
 import 'package:latihan_ui/Utils/custom_color.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController _emailController = TextEditingController();
 
