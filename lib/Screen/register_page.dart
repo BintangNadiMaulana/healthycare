@@ -10,6 +10,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+  final TextEditingController _emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,12 +20,10 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-
   // ini register body
   Widget _registerBody(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 20),
-      color: Colors.white,
       child: ListView(
         children: [
           // text hai, selamat datang
@@ -37,6 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           Image.asset("assets/images/login_image.png"),
           ResUseAbleWidget().primaryColorText("Email"),
+          ResUseAbleWidget().customForm(_emailController, "Masukan Email Anda")
         ],
       ),
     );
