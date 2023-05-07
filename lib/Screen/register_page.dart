@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_ui/Utils/Widgets/reusable_widget.dart';
 import 'package:latihan_ui/Utils/custom_color.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -24,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
       color: Colors.white,
       child: ListView(
         children: [
+          // text hai, selamat datang
           Padding(
             padding: const EdgeInsets.only(top: 110),
             child: Row(
@@ -32,7 +34,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 Text("Selamat Datang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28, fontWeight: FontWeight.bold),),
               ],
             ),
-          )
+          ),
+          Image.asset("assets/images/login_image.png"),
+          ResUseAbleWidget().primaryColorText("Email"),
         ],
       ),
     );
