@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_ui/Screen/register_page.dart';
 import 'package:latihan_ui/Utils/Widgets/reusable_widget.dart';
 import 'package:latihan_ui/Utils/custom_color.dart';
 
@@ -12,6 +13,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  bool _showPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +56,11 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-          ResUseAbleWidget().customForm(_emailController, "Masukan Password Anda"),
+          ResUseAbleWidget().customFormPassword(_passwordController, "Masukan Password Anda", (){
+            setState(() {
+              _showPassword = !_showPassword;
+            });
+          }, _showPassword),
           Padding(
             padding: const EdgeInsets.only(top: 40, bottom: 30),
             child: ResUseAbleWidget().customMainButton("Login", () { }),
@@ -64,11 +72,12 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Text("Belum punya akun ?", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w400),),
                 GestureDetector(
-                    // todo tugas mas bintang tambahkan route navigator ke halaman register
                     onTap: (){
-
+                      // route to register page
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => const RegisterPage()));
                     },
-                    child: Text("Daftar sekarang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14,fontWeight: FontWeight.w600),))
+                    child: const Text("Daftar sekarang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14,fontWeight: FontWeight.w600),))
               ],
             ),
           ),
