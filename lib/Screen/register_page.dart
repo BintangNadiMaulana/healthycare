@@ -27,7 +27,6 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  // todo tugas mas bintang buat sesuai figma
   Widget _registerBody(BuildContext context){
     return Container(
       padding: EdgeInsets.only(left: 20),
