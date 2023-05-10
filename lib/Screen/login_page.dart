@@ -63,7 +63,9 @@ class _LoginPageState extends State<LoginPage> {
           }, _showPassword),
           Padding(
             padding: const EdgeInsets.only(top: 40, bottom: 30),
-            child: ResUseAbleWidget().customMainButton("Login", () { }),
+            child: ResUseAbleWidget().customMainButton("Login", () {
+              // todo mas bintang route dari login ke profile page
+            }),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 70, right: 70, bottom: 41),
