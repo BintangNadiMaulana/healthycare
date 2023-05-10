@@ -20,6 +20,9 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController konfirmasiPasswordController = TextEditingController();
 
+  bool _showPassword = true;
+  bool _showConfirmPassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,12 +86,20 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: const EdgeInsets.only(top: 40),
               child: ResUseAbleWidget().primaryColorText("Password"),
             ),
-            ResUseAbleWidget().customForm(passwordController, "Masukan Password Anda"),
+            ResUseAbleWidget().customFormPassword(passwordController, "Masukan Password Anda", (){
+              setState(() {
+                _showPassword = !_showPassword;
+              });
+            }, _showPassword),
             Padding(
             padding: const EdgeInsets.only(top: 40),
             child: ResUseAbleWidget().primaryColorText("Konfirmasi Password"),
           ),
-            ResUseAbleWidget().customForm(konfirmasiPasswordController, "Konfirmasi Password Anda"),
+            ResUseAbleWidget().customFormPassword(konfirmasiPasswordController, "Konfirmasi Password Anda", (){
+              setState(() {
+                _showConfirmPassword = !_showConfirmPassword;
+              });
+            }, _showConfirmPassword),
             Padding(
             padding: const EdgeInsets.only(top: 40, bottom: 30),
             child: ResUseAbleWidget().customMainButton("Registrasi", () { }),
