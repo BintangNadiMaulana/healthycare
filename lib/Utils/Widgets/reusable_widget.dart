@@ -95,17 +95,52 @@ class ResUseAbleWidget {
                   flex: 1,
                   child: Text(
                     text,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
                   )),
-              Icon(
+              const Icon(
                 Icons.arrow_forward,
                 color: Colors.white,
               )
             ],
           )),
+    );
+  }
+
+  Widget categoryContainer(String text) {
+    return Container(
+      width: 111,
+      height: 30,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: CustomColor.primaryColor),
+      child: Center(
+        child: Text(
+          text,
+          style: const TextStyle(
+              color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700),
+        ),
+      ),
+    );
+  }
+
+  Widget categoryContainerWhite(String text) {
+    return Container(
+      width: 111,
+      height: 30,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30), color: Colors.white),
+      child: Center(
+        child: Text(
+          text,
+          style: const TextStyle(
+              color: CustomColor.primaryColor,
+              fontSize: 12,
+              fontWeight: FontWeight.w700),
+        ),
+      ),
     );
   }
 }
