@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_ui/Screen/profile_page.dart';
 import 'package:latihan_ui/Screen/register_page.dart';
 import 'package:latihan_ui/Utils/Widgets/reusable_widget.dart';
 import 'package:latihan_ui/Utils/custom_color.dart';
@@ -65,6 +66,8 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.only(top: 40, bottom: 30),
             child: ResUseAbleWidget().customMainButton("Login", () {
               // todo mas bintang route dari login ke profile page
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => const ProfilePage()));
             }),
           ),
           Padding(
