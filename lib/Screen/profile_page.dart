@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Utils/Widgets/reusable_widget.dart';
+import '../Utils/custom_color.dart';
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -33,6 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget profileBody(BuildContext context){
     return Container(
+      padding: EdgeInsets.only (left: 30, right: 30),
       margin: EdgeInsets.only(left: 32, right: 32),
       color: Colors.white,
       child: ListView(
@@ -69,14 +71,19 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Row(
                 children: [
                   Image.asset("assets/icon/icon_warning.png"),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12),
-                    child: Text("Pastikan profile anda terisi dengan benar"),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12),
+                      child: Text("Pastikan profile anda terisi dengan benar, data pribadi anda terjamin keamanannya", maxLines: 2, style: TextStyle(
+                          color: CustomColor.greyColor, fontSize: 12, fontWeight: FontWeight.w600
+                      )),
+                    ),
                   )
                 ],
               ),
             ),
           ),
+
 
         ],
       ),
