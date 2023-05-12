@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_ui/Screen/home_page.dart';
 import 'package:latihan_ui/Screen/profile_page.dart';
 import 'package:latihan_ui/Screen/register_page.dart';
 import 'package:latihan_ui/Utils/Widgets/reusable_widget.dart';
@@ -66,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.only(top: 40, bottom: 30),
             child: ResUseAbleWidget().btnMain("Login", (){
               Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => const ProfilePage()));
+                  builder: (context) => const HomePage()));
             }),
           ),
           Center(
