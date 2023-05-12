@@ -83,6 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
+
           ResUseAbleWidget().btnPrimaryCustomIcon("Simpan Profile", () {
             print("Nama Depan : ${firstNameController.text}");
             print("Nama Belakang : ${lastNameController.text}");
@@ -90,8 +91,6 @@ class _ProfilePageState extends State<ProfilePage> {
             print("No. Telpon : ${noTelponController.text}");
             print("No. KTP : ${noKTPController.text}");
           }, "assets/icon/icon_disket.png")
-
-
         ],
       ),
     );
