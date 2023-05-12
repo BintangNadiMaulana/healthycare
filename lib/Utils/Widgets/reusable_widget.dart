@@ -77,7 +77,7 @@ class ResUseAbleWidget {
     );
   }
 
-  Widget customMainButton(String text, VoidCallback function) {
+  Widget btnMain(String text, VoidCallback function) {
     return Container(
       height: 48,
       margin: EdgeInsets.only(right: 20),
@@ -90,20 +90,53 @@ class ResUseAbleWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(flex: 1, child: Container()),
+              Container(),
               Expanded(
                   flex: 1,
-                  child: Text(
-                    text,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                  child: Center(
+                    child: Text(
+                      text,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
                   )),
               const Icon(
                 Icons.arrow_forward,
                 color: Colors.white,
               )
+            ],
+          )),
+    );
+  }
+
+  Widget btnPrimaryCustomIcon(String text, VoidCallback function, String iconAssets) {
+    return Container(
+      height: 48,
+      margin: const EdgeInsets.only(right: 20),
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: CustomColor.primaryColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8))),
+          onPressed: function,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(),
+              Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: Text(
+                      text,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )),
+              Image.asset(iconAssets)
             ],
           )),
     );

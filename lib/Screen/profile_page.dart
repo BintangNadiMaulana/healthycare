@@ -83,6 +83,9 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
+          ResUseAbleWidget().btnPrimaryCustomIcon("Simpan Profile", () {
+
+          }, "assets/icon/icon_disket.png")
 
 
         ],

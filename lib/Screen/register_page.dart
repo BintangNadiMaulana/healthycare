@@ -102,7 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
             }, _showConfirmPassword),
             Padding(
             padding: const EdgeInsets.only(top: 40, bottom: 30),
-            child: ResUseAbleWidget().customMainButton("Registrasi", () { }),
+            child: ResUseAbleWidget().btnMain("Registrasi", () { }),
           ),
             Center(
             child: Row(

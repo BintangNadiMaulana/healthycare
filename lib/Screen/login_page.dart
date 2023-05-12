@@ -64,8 +64,7 @@ class _LoginPageState extends State<LoginPage> {
           }, _showPassword),
           Padding(
             padding: const EdgeInsets.only(top: 40, bottom: 30),
-            child: ResUseAbleWidget().customMainButton("Login", () {
-              // todo mas bintang route dari login ke profile page
+            child: ResUseAbleWidget().btnMain("Login", (){
               Navigator.push(context, MaterialPageRoute(
                   builder: (context) => const ProfilePage()));
             }),
