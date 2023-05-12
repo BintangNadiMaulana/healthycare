@@ -104,12 +104,11 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.only(top: 40, bottom: 30),
             child: ResUseAbleWidget().customMainButton("Registrasi", () { }),
           ),
-            Padding(
-            padding: const EdgeInsets.only(left: 70, right: 70, bottom: 41),
+            Center(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Sudah punya akun ?", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w400),),
+                Text("Sudah punya akun? ", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w400),),
                 GestureDetector(
                     onTap: (){
                       Navigator.pop(context);

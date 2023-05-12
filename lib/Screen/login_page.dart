@@ -70,12 +70,11 @@ class _LoginPageState extends State<LoginPage> {
                   builder: (context) => const ProfilePage()));
             }),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 70, right: 70, bottom: 41),
+          Center(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Belum punya akun ?", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w400),),
+                Text("Belum punya akun? ", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w400),),
                 GestureDetector(
                     onTap: (){
                       // route to register page
