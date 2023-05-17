@@ -81,13 +81,13 @@ class HomeContainer extends StatelessWidget {
                   Positioned(
                       bottom: 10,
                       right: 10,
-                      top: -15,
+                      top: -30,
                       left: 10,
                       child: Container(
                         child: Column(
                           children: [
                             Image.asset(
-                                "assets/images/calendar_image.png"),
+                                "assets/images/calendar_image.png", width: 100, height: 100,),
                             Row(
                               children: [
                                 Container(
