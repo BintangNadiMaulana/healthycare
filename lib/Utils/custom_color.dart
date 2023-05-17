@@ -9,4 +9,5 @@ class CustomColor {
   static const Color orange = Color(0xffFF7200);
   static const Color blue = Color(0xff00D9D5);
   static const Color red = Color(0xffEB0004);
+  static const Color green = Color(0xff007025);
 }
