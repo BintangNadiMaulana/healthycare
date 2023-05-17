@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_ui/Screen/widget/home_container.dart';
 import 'package:latihan_ui/Utils/custom_color.dart';
 
 import '../Utils/Widgets/reusable_widget.dart';
@@ -32,6 +33,8 @@ class _HomePageState extends State<HomePage> {
     return Container(
       child: ListView(
         children: [
+          HomeContainer(),
+          // search section
           Row(
             children: [
               Container(
@@ -48,6 +51,7 @@ class _HomePageState extends State<HomePage> {
             ],
 
           ),
+          // list kategori
           Container(
             margin: EdgeInsets.only(top: 47),
             height: 40,
@@ -89,6 +93,7 @@ class _HomePageState extends State<HomePage> {
 
             ),
           ),
+          // list produk
           Container(
             margin: EdgeInsets.only(top: 26),
             height: 200,
@@ -238,6 +243,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          // text pilih tipe layanan
           Container(
             margin: EdgeInsets.only(top: 40, bottom: 30, left: 20),
             child: ResUseAbleWidget().primaryColorText("Pilih Tipe Layanan Kesehatan Anda"),
