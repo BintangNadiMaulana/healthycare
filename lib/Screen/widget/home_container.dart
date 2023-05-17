@@ -9,7 +9,7 @@ class HomeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 20, right: 20, top: 50),
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           gradient:  const LinearGradient(
               begin: Alignment.centerLeft,
