@@ -253,6 +253,7 @@ class _HomePageState extends State<HomePage> {
             margin: EdgeInsets.only(top: 40, bottom: 30, left: 20),
             child: ResUseAbleWidget().primaryColorText("Pilih Tipe Layanan Kesehatan Anda"),
           ),
+
           Container(
             margin: EdgeInsets.only(top: 40, bottom: 30, left: 20),
             child:
@@ -262,17 +263,100 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("PCR Swab Test (Drive Thru) Hasil 1 Hari Kerja", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14, fontWeight: FontWeight.w600), maxLines: 2,),
+                      Text("PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14, fontWeight: FontWeight.w600), maxLines: 2,),
                       SizedBox(height: 12,),
-                      Text("Rp 1.400.000", style: TextStyle(color: CustomColor.orange, fontSize: 14, fontWeight: FontWeight.w600))
+                      Text("Rp 1.400.000", style: TextStyle(color: CustomColor.orange, fontSize: 14, fontWeight: FontWeight.w600)),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Image.asset("assets/icon/icon_gedung.png"),
+                            ),
+                            Text("Lenmarc Surabaya", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w600),)
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Image.asset("assets/icon/icon_location.png"),
+                            ),
+                            Text("Dukuh Pakis, Surabaya", style: TextStyle(color: CustomColor.primaryColor, fontSize: 12, fontWeight: FontWeight.w400),)
+                          ],
+                        ),
+                      ),
+
                     ],
                   ),
                 ),
-                Expanded(child: Image.asset("assets/images/hospital1_image.png")),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(18),
+                      child: Expanded(child: Image.asset("assets/images/hospital1_image.png"))),
+                ),
 
               ],
             ),
-          )
+          ),
+
+          Container(
+            margin: EdgeInsets.only(top: 40, bottom: 30, left: 20),
+            child:
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14, fontWeight: FontWeight.w600), maxLines: 2,),
+                      SizedBox(height: 12,),
+                      Text("Rp 1.400.000", style: TextStyle(color: CustomColor.orange, fontSize: 14, fontWeight: FontWeight.w600)),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Image.asset("assets/icon/icon_gedung.png"),
+                            ),
+                            Text("Lenmarc Surabaya", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w600),)
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Image.asset("assets/icon/icon_location.png"),
+                            ),
+                            Text("Dukuh Pakis, Surabaya", style: TextStyle(color: CustomColor.primaryColor, fontSize: 12, fontWeight: FontWeight.w400),)
+                          ],
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(18),
+                      child: Expanded(child: Image.asset("assets/images/hospital1_image.png"))),
+                ),
+
+              ],
+            ),
+          ),
+
+
         ],
       ),
     );
