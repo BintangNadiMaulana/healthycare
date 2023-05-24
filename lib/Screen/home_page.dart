@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latihan_ui/Screen/widget/home_container.dart';
+import 'package:latihan_ui/Screen/widget/inspection_track_container.dart';
+import 'package:latihan_ui/Screen/widget/special_service_container.dart';
 import 'package:latihan_ui/Utils/custom_color.dart';
 
 import '../Utils/Widgets/reusable_widget.dart';
@@ -34,6 +36,9 @@ class _HomePageState extends State<HomePage> {
       child: ListView(
         children: [
           HomeContainer(),
+          SpecialServiceContainer(),
+          InspectionTrackContainer(),
+
           // search section
           Row(
             children: [
@@ -248,6 +253,26 @@ class _HomePageState extends State<HomePage> {
             margin: EdgeInsets.only(top: 40, bottom: 30, left: 20),
             child: ResUseAbleWidget().primaryColorText("Pilih Tipe Layanan Kesehatan Anda"),
           ),
+          Container(
+            margin: EdgeInsets.only(top: 40, bottom: 30, left: 20),
+            child:
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("PCR Swab Test (Drive Thru) Hasil 1 Hari Kerja", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14, fontWeight: FontWeight.w600), maxLines: 2,),
+                      SizedBox(height: 12,),
+                      Text("Rp 1.400.000", style: TextStyle(color: CustomColor.orange, fontSize: 14, fontWeight: FontWeight.w600))
+                    ],
+                  ),
+                ),
+                Expanded(child: Image.asset("assets/images/hospital1_image.png")),
+
+              ],
+            ),
+          )
         ],
       ),
     );
