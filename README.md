@@ -5,8 +5,8 @@ design UI/UX dari link berikut https://www.figma.com/file/qVXqqUNhVwiz5zE3WbSjkh
 
 ## Screenshot
 
-![WhatsApp Image 2023-05-28 at 15 26 59](https://github.com/BintangNadiMaulana/latihan_ui/assets/48204257/3bfe4815-59c0-4c97-baf1-5cb6810fb3d3)
+![WhatsApp Image 2023-05-28 at 15 26 59](https://github.com/BintangNadiMaulana/healthycare/assets/48204257/c1b844ef-ef61-4427-b6d1-fe7ef48d9edf)
 
-![WhatsApp Image 2023-05-28 at 15 27 00](https://github.com/BintangNadiMaulana/latihan_ui/assets/48204257/a2b3feff-b67f-4426-8481-e45775d30476)
+![WhatsApp Image 2023-05-28 at 15 27 00 (1)](https://github.com/BintangNadiMaulana/healthycare/assets/48204257/fca17ea9-29c2-484b-af35-b81fa810497f)
 
-![WhatsApp Image 2023-05-28 at 15 27 00 (1)](https://github.com/BintangNadiMaulana/latihan_ui/assets/48204257/ab227d39-70c6-4ad1-bfff-d73c02fc7a68)
+![WhatsApp Image 2023-05-28 at 15 27 00](https://github.com/BintangNadiMaulana/healthycare/assets/48204257/887d17b0-3a96-4550-981b-ce8218852cdd)
