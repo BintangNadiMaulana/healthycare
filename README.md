@@ -1,16 +1,12 @@
-# latihan_ui
+# Healthy Care Mobile App UI
 
-A new Flutter project.
+Di project ini saya melatih skill atau kemampuan saya dalam mengimplementasi
+design UI/UX dari link berikut https://www.figma.com/file/qVXqqUNhVwiz5zE3WbSjkh/UI-Aplikasi?type=design&node-id=227-1849&t=s64mJDtH1jWS3sJ9-0 dalam bentuk mobile apps menggunakan Flutter
 
-## Getting Started
+## Screenshot
 
-This project is a starting point for a Flutter application.
+![WhatsApp Image 2023-05-28 at 15 26 59](https://github.com/BintangNadiMaulana/latihan_ui/assets/48204257/3bfe4815-59c0-4c97-baf1-5cb6810fb3d3)
 
-A few resources to get you started if this is your first Flutter project:
+![WhatsApp Image 2023-05-28 at 15 27 00](https://github.com/BintangNadiMaulana/latihan_ui/assets/48204257/a2b3feff-b67f-4426-8481-e45775d30476)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![WhatsApp Image 2023-05-28 at 15 27 00 (1)](https://github.com/BintangNadiMaulana/latihan_ui/assets/48204257/ab227d39-70c6-4ad1-bfff-d73c02fc7a68)
