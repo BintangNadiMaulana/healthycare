@@ -316,7 +316,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text("PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14, fontWeight: FontWeight.w600), maxLines: 2,),
                       SizedBox(height: 12,),
-                      Text("Rp 1.400.000", style: TextStyle(color: CustomColor.orange, fontSize: 14, fontWeight: FontWeight.w600)),
+                      Text("Rp 1.800.000", style: TextStyle(color: CustomColor.orange, fontSize: 14, fontWeight: FontWeight.w600)),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Row(
@@ -325,7 +325,7 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.only(right: 8),
                               child: Image.asset("assets/icon/icon_gedung.png"),
                             ),
-                            Text("Lenmarc Surabaya", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w600),)
+                            Text("Lenmarc Jakarta", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w600),)
                           ],
                         ),
                       ),
@@ -337,7 +337,7 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.only(right: 8),
                               child: Image.asset("assets/icon/icon_location.png"),
                             ),
-                            Text("Dukuh Pakis, Surabaya", style: TextStyle(color: CustomColor.primaryColor, fontSize: 12, fontWeight: FontWeight.w400),)
+                            Text("Menteng, Jakarta", style: TextStyle(color: CustomColor.primaryColor, fontSize: 12, fontWeight: FontWeight.w400),)
                           ],
                         ),
                       ),
@@ -349,7 +349,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(right: 20),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(18),
-                      child: Expanded(child: Image.asset("assets/images/hospital1_image.png"))),
+                      child: Expanded(child: Image.asset("assets/images/hospital2_image.png"))),
                 ),
 
               ],
