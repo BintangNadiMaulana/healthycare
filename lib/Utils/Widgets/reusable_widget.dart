@@ -21,7 +21,7 @@ class ReusableWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: const Color(0x809E9E9E),
             spreadRadius: 0.5,
             blurRadius: 0.5,
             offset: const Offset(0, 1),
@@ -56,7 +56,7 @@ class ReusableWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: const Color(0x809E9E9E),
             spreadRadius: 0.5,
             blurRadius: 0.5,
             offset: const Offset(0, 1),
