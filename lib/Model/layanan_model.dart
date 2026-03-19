@@ -1,4 +1,3 @@
-// P6: model untuk data layanan kesehatan — pisahkan data dari UI
 class LayananModel {
   final String title;
   final String price;
@@ -15,7 +14,6 @@ class LayananModel {
   });
 }
 
-// P6: data layanan tidak lagi hardcoded di dalam widget
 final List<LayananModel> dummyLayanan = [
   const LayananModel(
     title: 'PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja',

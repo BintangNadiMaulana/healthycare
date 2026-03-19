@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-// P6: update import dari latihan_ui ke healthycare
 import 'package:healthycare/Utils/custom_color.dart';
 
-// P5: rename dari ResUseAbleWidget (typo) menjadi ReusableWidget
 class ReusableWidget {
   Widget primaryColorText(String text) {
-    return Text(text,
-        style: const TextStyle(
-            color: CustomColor.primaryColor,
-            fontSize: 16,
-            fontWeight: FontWeight.bold));
+    return Text(
+      text,
+      style: const TextStyle(
+        color: CustomColor.primaryColor,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+    );
   }
 
   Widget customForm(TextEditingController controller, String hintText) {
@@ -20,7 +21,7 @@ class ReusableWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.grey.withValues(alpha: 0.5),
             spreadRadius: 0.5,
             blurRadius: 0.5,
             offset: const Offset(0, 1),
@@ -32,17 +33,22 @@ class ReusableWidget {
         child: TextFormField(
           controller: controller,
           decoration: InputDecoration(
-              fillColor: Colors.white,
-              filled: true,
-              border: InputBorder.none,
-              hintText: hintText),
+            fillColor: Colors.white,
+            filled: true,
+            border: InputBorder.none,
+            hintText: hintText,
+          ),
         ),
       ),
     );
   }
 
-  Widget customFormPassword(TextEditingController controller, String hintText,
-      VoidCallback? function, bool showPassword) {
+  Widget customFormPassword(
+    TextEditingController controller,
+    String hintText,
+    VoidCallback? function,
+    bool showPassword,
+  ) {
     return Container(
       margin: const EdgeInsets.only(right: 20, top: 16),
       decoration: BoxDecoration(
@@ -50,7 +56,7 @@ class ReusableWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.grey.withValues(alpha: 0.5),
             spreadRadius: 0.5,
             blurRadius: 0.5,
             offset: const Offset(0, 1),
@@ -63,17 +69,17 @@ class ReusableWidget {
           obscureText: showPassword,
           controller: controller,
           decoration: InputDecoration(
-              suffixIcon: IconButton(
-                onPressed: () {
-                  function?.call();
-                },
-                icon: Icon(
-                    showPassword ? Icons.visibility : Icons.visibility_off),
+            suffixIcon: IconButton(
+              onPressed: function,
+              icon: Icon(
+                showPassword ? Icons.visibility : Icons.visibility_off,
               ),
-              fillColor: Colors.white,
-              filled: true,
-              border: InputBorder.none,
-              hintText: hintText),
+            ),
+            fillColor: Colors.white,
+            filled: true,
+            border: InputBorder.none,
+            hintText: hintText,
+          ),
         ),
       ),
     );
@@ -84,65 +90,75 @@ class ReusableWidget {
       height: 48,
       margin: const EdgeInsets.only(right: 20),
       child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: CustomColor.primaryColor,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8))),
-          onPressed: function,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(),
-              Expanded(
-                  flex: 1,
-                  child: Center(
-                    child: Text(
-                      text,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )),
-              const Icon(Icons.arrow_forward, color: Colors.white),
-            ],
-          )),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: CustomColor.primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        onPressed: function,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const SizedBox(),
+            Expanded(
+              child: Center(
+                child: Text(
+                  text,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            const Icon(Icons.arrow_forward, color: Colors.white),
+          ],
+        ),
+      ),
     );
   }
 
   Widget btnPrimaryCustomIcon(
-      String text, VoidCallback function, String iconAssets) {
+    String text,
+    VoidCallback function,
+    String iconAssets,
+  ) {
     return Container(
       height: 48,
       margin: const EdgeInsets.only(right: 20),
       child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: CustomColor.primaryColor,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8))),
-          onPressed: function,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(),
-              Expanded(
-                  flex: 1,
-                  child: Center(
-                    child: Text(
-                      text,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )),
-              Image.asset(iconAssets),
-            ],
-          )),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: CustomColor.primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        onPressed: function,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const SizedBox(),
+            Expanded(
+              child: Center(
+                child: Text(
+                  text,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Image.asset(iconAssets),
+          ],
+        ),
+      ),
     );
   }
 
-  // P4: indicator dots reusable — dipakai di 3 widget card
   Widget indicatorDots() {
     return Row(
       children: [
@@ -150,22 +166,27 @@ class ReusableWidget {
           width: 40,
           height: 8,
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20)),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
         ),
         const SizedBox(width: 12),
         Container(
           height: 8,
           width: 8,
           decoration: const BoxDecoration(
-              color: Colors.white, shape: BoxShape.circle),
+            color: Colors.white,
+            shape: BoxShape.circle,
+          ),
         ),
         const SizedBox(width: 12),
         Container(
           height: 8,
           width: 8,
           decoration: const BoxDecoration(
-              color: Colors.white, shape: BoxShape.circle),
+            color: Colors.white,
+            shape: BoxShape.circle,
+          ),
         ),
       ],
     );

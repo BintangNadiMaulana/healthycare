@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// P6: update import dari latihan_ui ke healthycare
 import 'package:healthycare/Utils/Widgets/reusable_widget.dart';
 import 'package:healthycare/Utils/custom_color.dart';
 
@@ -11,17 +10,15 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
-  // P5: semua controller dibuat private (tambah _ di depan)
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _noKTPController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _noTelponController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _firstNameController          = TextEditingController();
+  final TextEditingController _lastNameController           = TextEditingController();
+  final TextEditingController _noKTPController              = TextEditingController();
+  final TextEditingController _emailController              = TextEditingController();
+  final TextEditingController _noTelponController           = TextEditingController();
+  final TextEditingController _passwordController           = TextEditingController();
   final TextEditingController _konfirmasiPasswordController = TextEditingController();
 
-  bool _showPassword = true;
+  bool _showPassword        = true;
   bool _showConfirmPassword = true;
 
   @override
@@ -37,12 +34,12 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _doRegister() {
-    final firstName = _firstNameController.text.trim();
-    final lastName = _lastNameController.text.trim();
-    final noKTP = _noKTPController.text.trim();
-    final email = _emailController.text.trim();
-    final noTelpon = _noTelponController.text.trim();
-    final password = _passwordController.text;
+    final firstName  = _firstNameController.text.trim();
+    final lastName   = _lastNameController.text.trim();
+    final noKTP      = _noKTPController.text.trim();
+    final email      = _emailController.text.trim();
+    final noTelpon   = _noTelponController.text.trim();
+    final password   = _passwordController.text;
     final konfirmasi = _konfirmasiPasswordController.text;
 
     if (firstName.isEmpty) {
@@ -92,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
     _showSnackBar("Registrasi berhasil! Silahkan login.");
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pop(context);
+      if (mounted) Navigator.pop(context);
     });
   }
 
@@ -122,24 +119,31 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: EdgeInsets.only(top: 110, bottom: 4),
             child: Row(
               children: [
-                // P5: const pada TextStyle
-                Text("Hai, ",
-                    style: TextStyle(
-                        color: CustomColor.primaryColor, fontSize: 28)),
-                Text("Selamat Datang",
-                    style: TextStyle(
-                        color: CustomColor.primaryColor,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold)),
+                Text(
+                  "Hai, ",
+                  style: TextStyle(
+                    color: CustomColor.primaryColor,
+                    fontSize: 28,
+                  ),
+                ),
+                Text(
+                  "Selamat Datang",
+                  style: TextStyle(
+                    color: CustomColor.primaryColor,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
           ),
           const Text(
             "Silahkan daftar untuk melanjutkan",
             style: TextStyle(
-                color: CustomColor.secondaryColor,
-                fontSize: 12,
-                fontWeight: FontWeight.w600),
+              color: CustomColor.secondaryColor,
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           Image.asset("assets/images/login_image.png"),
           Padding(
@@ -151,7 +155,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // P5: ReusableWidget (bukan ResUseAbleWidget)
                       ReusableWidget().primaryColorText("Nama Depan"),
                       ReusableWidget().customForm(_firstNameController, "Jhon"),
                     ],
@@ -186,17 +189,21 @@ class _RegisterPageState extends State<RegisterPage> {
             child: ReusableWidget().primaryColorText("Password"),
           ),
           ReusableWidget().customFormPassword(
-              _passwordController, "Masukan Password Anda", () {
-            setState(() { _showPassword = !_showPassword; });
-          }, _showPassword),
+            _passwordController,
+            "Masukan Password Anda",
+            () => setState(() => _showPassword = !_showPassword),
+            _showPassword,
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 40),
             child: ReusableWidget().primaryColorText("Konfirmasi Password"),
           ),
           ReusableWidget().customFormPassword(
-              _konfirmasiPasswordController, "Konfirmasi Password Anda", () {
-            setState(() { _showConfirmPassword = !_showConfirmPassword; });
-          }, _showConfirmPassword),
+            _konfirmasiPasswordController,
+            "Konfirmasi Password Anda",
+            () => setState(() => _showConfirmPassword = !_showConfirmPassword),
+            _showConfirmPassword,
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 40, bottom: 30),
             child: ReusableWidget().btnMain("Registrasi", _doRegister),
@@ -208,19 +215,22 @@ class _RegisterPageState extends State<RegisterPage> {
                 const Text(
                   "Sudah punya akun? ",
                   style: TextStyle(
-                      color: CustomColor.greyColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400),
+                    color: CustomColor.greyColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
                 GestureDetector(
-                    onTap: () { Navigator.pop(context); },
-                    child: const Text(
-                      "Login sekarang",
-                      style: TextStyle(
-                          color: CustomColor.primaryColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    )),
+                  onTap: () => Navigator.pop(context),
+                  child: const Text(
+                    "Login sekarang",
+                    style: TextStyle(
+                      color: CustomColor.primaryColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

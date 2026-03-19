@@ -1,4 +1,3 @@
-// P6: model untuk data produk — pisahkan data dari UI
 class ProductModel {
   final String name;
   final String price;
@@ -13,7 +12,6 @@ class ProductModel {
   });
 }
 
-// P6: data produk tidak lagi hardcoded di dalam widget
 final List<ProductModel> dummyProducts = [
   const ProductModel(
     name: 'Suntik Steril',

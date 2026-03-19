@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// P6: update semua import dari latihan_ui ke healthycare
 import 'package:healthycare/Utils/Widgets/reusable_widget.dart';
 import 'package:healthycare/Utils/custom_color.dart';
 
@@ -11,8 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _emailController    = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   bool _showPassword = true;
@@ -25,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _doLogin() {
-    final email = _emailController.text.trim();
+    final email    = _emailController.text.trim();
     final password = _passwordController.text;
 
     if (email.isEmpty) {
@@ -45,7 +43,6 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
-    // P6: gunakan named route '/home' bukan Navigator.push langsung
     Navigator.pushNamed(context, '/home');
   }
 
@@ -75,23 +72,31 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.only(top: 110, bottom: 4),
             child: Row(
               children: [
-                Text("Hai, ",
-                    style: TextStyle(
-                        color: CustomColor.primaryColor, fontSize: 28)),
-                Text("Selamat Datang",
-                    style: TextStyle(
-                        color: CustomColor.primaryColor,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold)),
+                Text(
+                  "Hai, ",
+                  style: TextStyle(
+                    color: CustomColor.primaryColor,
+                    fontSize: 28,
+                  ),
+                ),
+                Text(
+                  "Selamat Datang",
+                  style: TextStyle(
+                    color: CustomColor.primaryColor,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
           ),
           const Text(
             "Silahkan login untuk melanjutkan",
             style: TextStyle(
-                color: CustomColor.secondaryColor,
-                fontSize: 12,
-                fontWeight: FontWeight.w600),
+              color: CustomColor.secondaryColor,
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           Image.asset("assets/images/login_image.png"),
           ReusableWidget().primaryColorText("Email"),
@@ -103,24 +108,26 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 ReusableWidget().primaryColorText("Password"),
                 GestureDetector(
-                  onTap: () => _showSnackBar("Fitur lupa password akan segera hadir"),
+                  onTap: () =>
+                      _showSnackBar("Fitur lupa password akan segera hadir"),
                   child: const Text(
                     "Lupa password anda ?",
                     style: TextStyle(
-                        color: CustomColor.greyColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600),
+                      color: CustomColor.greyColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
           ReusableWidget().customFormPassword(
-              _passwordController, "Masukan Password Anda", () {
-            setState(() {
-              _showPassword = !_showPassword;
-            });
-          }, _showPassword),
+            _passwordController,
+            "Masukan Password Anda",
+            () => setState(() => _showPassword = !_showPassword),
+            _showPassword,
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 40, bottom: 30),
             child: ReusableWidget().btnMain("Login", _doLogin),
@@ -132,22 +139,22 @@ class _LoginPageState extends State<LoginPage> {
                 const Text(
                   "Belum punya akun? ",
                   style: TextStyle(
-                      color: CustomColor.greyColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400),
+                    color: CustomColor.greyColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
                 GestureDetector(
-                    onTap: () {
-                      // P6: gunakan named route '/register'
-                      Navigator.pushNamed(context, '/register');
-                    },
-                    child: const Text(
-                      "Daftar sekarang",
-                      style: TextStyle(
-                          color: CustomColor.primaryColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    )),
+                  onTap: () => Navigator.pushNamed(context, '/register'),
+                  child: const Text(
+                    "Daftar sekarang",
+                    style: TextStyle(
+                      color: CustomColor.primaryColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
