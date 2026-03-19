@@ -76,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: const EdgeInsets.only(top: 40),
               child: ResUseAbleWidget().primaryColorText("Email"),
             ),
-            ResUseAbleWidget().customForm(noKTPController, "Masukan Email Anda"),
+            ResUseAbleWidget().customForm(emailController, "Masukan Email Anda"),
             Padding(
               padding: const EdgeInsets.only(top: 40),
               child: ResUseAbleWidget().primaryColorText("No. Telpon"),

@@ -298,7 +298,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(right: 20),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(18),
-                      child: Expanded(child: Image.asset("assets/images/hospital1_image.png"))),
+                    child: Image.asset("assets/images/hospital1_image.png")),
                 ),
 
               ],
@@ -349,7 +349,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(right: 20),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(18),
-                      child: Expanded(child: Image.asset("assets/images/hospital2_image.png"))),
+                    child: Image.asset("assets/images/hospital2_image.png")),
                 ),
 
               ],
