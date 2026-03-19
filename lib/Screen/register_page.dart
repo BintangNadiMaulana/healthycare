@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_ui/Utils/Widgets/reusable_widget.dart';
-
-import '../Utils/custom_color.dart';
+// P6: update import dari latihan_ui ke healthycare
+import 'package:healthycare/Utils/Widgets/reusable_widget.dart';
+import 'package:healthycare/Utils/custom_color.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

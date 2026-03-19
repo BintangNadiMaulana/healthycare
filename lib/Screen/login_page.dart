@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_ui/Screen/home_page.dart';
-import 'package:latihan_ui/Screen/register_page.dart';
-import 'package:latihan_ui/Utils/Widgets/reusable_widget.dart';
-import 'package:latihan_ui/Utils/custom_color.dart';
+// P6: update semua import dari latihan_ui ke healthycare
+import 'package:healthycare/Utils/Widgets/reusable_widget.dart';
+import 'package:healthycare/Utils/custom_color.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -46,8 +45,8 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
-    Navigator.push(context, MaterialPageRoute(
-        builder: (context) => const HomePage()));
+    // P6: gunakan named route '/home' bukan Navigator.push langsung
+    Navigator.pushNamed(context, '/home');
   }
 
   void _showSnackBar(String message) {
@@ -76,7 +75,6 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.only(top: 110, bottom: 4),
             child: Row(
               children: [
-                // P5: const pada TextStyle yang sebelumnya tidak const
                 Text("Hai, ",
                     style: TextStyle(
                         color: CustomColor.primaryColor, fontSize: 28)),
@@ -96,7 +94,6 @@ class _LoginPageState extends State<LoginPage> {
                 fontWeight: FontWeight.w600),
           ),
           Image.asset("assets/images/login_image.png"),
-          // P5: ReusableWidget (bukan ResUseAbleWidget)
           ReusableWidget().primaryColorText("Email"),
           ReusableWidget().customForm(_emailController, "Masukan Email Anda"),
           Padding(
@@ -141,8 +138,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => const RegisterPage()));
+                      // P6: gunakan named route '/register'
+                      Navigator.pushNamed(context, '/register');
                     },
                     child: const Text(
                       "Daftar sekarang",

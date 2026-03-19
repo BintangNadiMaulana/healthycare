@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_ui/Screen/widget/home_container.dart';
-import 'package:latihan_ui/Screen/widget/inspection_track_container.dart';
-import 'package:latihan_ui/Screen/widget/special_service_container.dart';
-import 'package:latihan_ui/Utils/custom_color.dart';
-
-import '../Utils/Widgets/reusable_widget.dart';
+// P6: update semua import dari latihan_ui ke healthycare
+import 'package:healthycare/Screen/widget/home_container.dart';
+import 'package:healthycare/Screen/widget/inspection_track_container.dart';
+import 'package:healthycare/Screen/widget/special_service_container.dart';
+import 'package:healthycare/Utils/custom_color.dart';
+import 'package:healthycare/Utils/Widgets/reusable_widget.dart';
+// P6: import model — data tidak lagi hardcoded di UI
+import 'package:healthycare/Model/product_model.dart';
+import 'package:healthycare/Model/layanan_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,11 +17,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // P5: private controller (tambah _ di depan)
   final TextEditingController _searchController = TextEditingController();
 
   int _selectedCategoryIndex = 0;
-  final List<String> _categories = ["All Product", "Layanan Kesehatan", "Alat Kesehatan"];
+  final List<String> _categories = [
+    "All Product",
+    "Layanan Kesehatan",
+    "Alat Kesehatan"
+  ];
   String _searchQuery = "";
 
   @override
@@ -72,6 +78,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _homeBody(BuildContext context) {
+    // P6: gunakan MediaQuery agar responsif di semua ukuran layar
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return ListView(
       children: [
         const HomeContainer(),
@@ -88,13 +97,15 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(20),
                 decoration: const BoxDecoration(
                     color: Colors.white, shape: BoxShape.circle),
-                // P5: ReusableWidget (bukan ResUseAbleWidget)
                 child: Image.asset("assets/icon/icon_filter.png"),
               ),
             ),
-            Container(
-              width: 265,
-              child: ReusableWidget().customForm(_searchController, "Search"),
+            // P6: ganti hardcoded width: 265 dengan Expanded — responsif semua layar
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20, right: 20),
+                child: ReusableWidget().customForm(_searchController, "Search"),
+              ),
             ),
           ],
         ),
@@ -156,48 +167,36 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
 
-        // list produk
+        // P6: list produk dari model — tidak hardcoded
         Container(
           margin: const EdgeInsets.only(top: 26),
           height: 200,
-          child: ListView(
+          child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            children: [
-              _buildProductCard("Suntik Steril", "Rp 10.000", "Ready Stock"),
-              const SizedBox(width: 15),
-              _buildProductCard("Suntik Steril", "Rp 10.000", "Ready Stock"),
-              const SizedBox(width: 15),
-              _buildProductCard("Suntik Steril", "Rp 10.000", "Ready Stock"),
-            ],
+            itemCount: dummyProducts.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 15),
+            itemBuilder: (context, index) {
+              final product = dummyProducts[index];
+              return _buildProductCard(product);
+            },
           ),
         ),
 
         // text pilih tipe layanan
         Container(
           margin: const EdgeInsets.only(top: 40, bottom: 30, left: 20),
-          child: ReusableWidget().primaryColorText("Pilih Tipe Layanan Kesehatan Anda"),
+          child: ReusableWidget()
+              .primaryColorText("Pilih Tipe Layanan Kesehatan Anda"),
         ),
 
-        _buildLayananCard(
-          title: "PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja",
-          price: "Rp 1.400.000",
-          location: "Lenmarc Surabaya",
-          address: "Dukuh Pakis, Surabaya",
-          image: "assets/images/hospital1_image.png",
-        ),
-
-        _buildLayananCard(
-          title: "PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja",
-          price: "Rp 1.800.000",
-          location: "Lenmarc Jakarta",
-          address: "Menteng, Jakarta",
-          image: "assets/images/hospital2_image.png",
-        ),
+        // P6: list layanan dari model — tidak hardcoded
+        ...dummyLayanan.map((layanan) => _buildLayananCard(layanan, screenWidth)),
       ],
     );
   }
 
-  Widget _buildProductCard(String name, String price, String status) {
+  // P6: _buildProductCard pakai ProductModel
+  Widget _buildProductCard(ProductModel product) {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16), color: Colors.white),
@@ -207,8 +206,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 25),
-            child: Center(
-                child: Image.asset("assets/images/mikroskop_image.png")),
+            child: Center(child: Image.asset(product.image)),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12),
@@ -217,7 +215,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 12, left: 10),
-                  child: Text(name,
+                  child: Text(product.name,
                       style: const TextStyle(
                           color: CustomColor.secondaryColor,
                           fontSize: 17,
@@ -230,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 8, left: 10),
-                        child: Text(price,
+                        child: Text(product.price,
                             style: const TextStyle(
                                 color: CustomColor.orange,
                                 fontSize: 12,
@@ -244,7 +242,7 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(4),
                             color: CustomColor.greenBackground),
                         child: Center(
-                          child: Text(status,
+                          child: Text(product.status,
                               style: const TextStyle(
                                   color: CustomColor.green,
                                   fontSize: 10,
@@ -262,13 +260,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildLayananCard({
-    required String title,
-    required String price,
-    required String location,
-    required String address,
-    required String image,
-  }) {
+  // P6: _buildLayananCard pakai LayananModel
+  Widget _buildLayananCard(LayananModel layanan, double screenWidth) {
     return GestureDetector(
       onTap: () => _showSnackBar("Detail layanan akan segera hadir"),
       child: Container(
@@ -279,14 +272,14 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title,
+                  Text(layanan.title,
                       style: const TextStyle(
                           color: CustomColor.primaryColor,
                           fontSize: 14,
                           fontWeight: FontWeight.w600),
                       maxLines: 2),
                   const SizedBox(height: 12),
-                  Text(price,
+                  Text(layanan.price,
                       style: const TextStyle(
                           color: CustomColor.orange,
                           fontSize: 14,
@@ -299,7 +292,7 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.only(right: 8),
                           child: Image.asset("assets/icon/icon_gedung.png"),
                         ),
-                        Text(location,
+                        Text(layanan.location,
                             style: const TextStyle(
                                 color: CustomColor.greyColor,
                                 fontSize: 14,
@@ -315,7 +308,7 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.only(right: 8),
                           child: Image.asset("assets/icon/icon_location.png"),
                         ),
-                        Text(address,
+                        Text(layanan.address,
                             style: const TextStyle(
                                 color: CustomColor.primaryColor,
                                 fontSize: 12,
@@ -330,7 +323,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(right: 20),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(18),
-                child: Image.asset(image),
+                child: Image.asset(layanan.image),
               ),
             ),
           ],

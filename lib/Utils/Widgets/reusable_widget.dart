@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_ui/Utils/custom_color.dart';
+// P6: update import dari latihan_ui ke healthycare
+import 'package:healthycare/Utils/custom_color.dart';
 
 // P5: rename dari ResUseAbleWidget (typo) menjadi ReusableWidget
 class ReusableWidget {
