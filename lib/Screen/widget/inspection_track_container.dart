@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../Utils/Widgets/reusable_widget.dart';
 import '../../Utils/custom_color.dart';
 
 class InspectionTrackContainer extends StatelessWidget {
@@ -30,34 +31,10 @@ class InspectionTrackContainer extends StatelessWidget {
                       left: 10,
                       child: Column(
                         children: [
-                          Image.asset("assets/images/search_image.png", width: 100, height: 100),
-                          Row(
-                            children: [
-                              Container(
-                                width: 40,
-                                height: 8,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20)),
-                              ),
-                              const SizedBox(width: 12),
-                              Container(
-                                height: 8,
-                                width: 8,
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle),
-                              ),
-                              const SizedBox(width: 12),
-                              Container(
-                                height: 8,
-                                width: 8,
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle),
-                              ),
-                            ],
-                          ),
+                          Image.asset("assets/images/search_image.png",
+                              width: 100, height: 100),
+                          // P4: ganti inline dots dengan widget reusable
+                          ResUseAbleWidget().indicatorDots(),
                         ],
                       ))
                 ],
@@ -80,7 +57,6 @@ class InspectionTrackContainer extends StatelessWidget {
                       color: CustomColor.secondaryColor),
                 ),
                 const SizedBox(height: 12),
-                // P3: tombol Track berfungsi
                 GestureDetector(
                   onTap: () {
                     ScaffoldMessenger.of(context).showSnackBar(
