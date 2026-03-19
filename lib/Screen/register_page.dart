@@ -24,6 +24,18 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _showConfirmPassword = true;
 
   @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    noKTPController.dispose();
+    emailController.dispose();
+    noTelponController.dispose();
+    passwordController.dispose();
+    konfirmasiPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _registerBody(context),

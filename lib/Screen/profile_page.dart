@@ -18,6 +18,16 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController noTelponController = TextEditingController();
 
   @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    noKTPController.dispose();
+    emailController.dispose();
+    noTelponController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
