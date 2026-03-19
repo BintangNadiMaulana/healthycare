@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Utils/Widgets/reusable_widget.dart';
 import '../Utils/custom_color.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -27,6 +28,59 @@ class _ProfilePageState extends State<ProfilePage> {
     super.dispose();
   }
 
+  // P3: validasi dan feedback saat simpan profile
+  void _saveProfile() {
+    final firstName = firstNameController.text.trim();
+    final lastName = lastNameController.text.trim();
+    final email = emailController.text.trim();
+    final noTelpon = noTelponController.text.trim();
+    final noKTP = noKTPController.text.trim();
+
+    if (firstName.isEmpty) {
+      _showSnackBar("Nama depan tidak boleh kosong");
+      return;
+    }
+    if (lastName.isEmpty) {
+      _showSnackBar("Nama belakang tidak boleh kosong");
+      return;
+    }
+    if (email.isEmpty) {
+      _showSnackBar("Email tidak boleh kosong");
+      return;
+    }
+    if (!email.contains('@') || !email.contains('.')) {
+      _showSnackBar("Format email tidak valid");
+      return;
+    }
+    if (noTelpon.isEmpty) {
+      _showSnackBar("No. Telpon tidak boleh kosong");
+      return;
+    }
+    if (noKTP.isEmpty) {
+      _showSnackBar("No. KTP tidak boleh kosong");
+      return;
+    }
+
+    // P3: feedback sukses ke user (bukan hanya print ke konsol)
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Profile berhasil disimpan!"),
+        backgroundColor: CustomColor.green,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: CustomColor.primaryColor,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,14 +92,14 @@ class _ProfilePageState extends State<ProfilePage> {
           Image.asset("assets/icon/icon_bell.png"),
         ],
       ),
-      body:profileBody(context),
+      body: _profileBody(context),
     );
   }
 
-  Widget profileBody(BuildContext context){
+  Widget _profileBody(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only (left: 30, right: 30),
-      margin: EdgeInsets.only(left: 32, right: 32),
+      padding: const EdgeInsets.only(left: 30, right: 30),
+      margin: const EdgeInsets.only(left: 32, right: 32),
       color: Colors.white,
       child: ListView(
         children: [
@@ -84,23 +138,23 @@ class _ProfilePageState extends State<ProfilePage> {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 12),
-                      child: Text("Pastikan profile anda terisi dengan benar, data pribadi anda terjamin keamanannya", maxLines: 2, style: TextStyle(
-                          color: CustomColor.greyColor, fontSize: 12, fontWeight: FontWeight.w600
-                      )),
+                      child: Text(
+                        "Pastikan profile anda terisi dengan benar, data pribadi anda terjamin keamanannya",
+                        maxLines: 2,
+                        style: const TextStyle(
+                            color: CustomColor.greyColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                   )
                 ],
               ),
             ),
           ),
-
-          ResUseAbleWidget().btnPrimaryCustomIcon("Simpan Profile", () {
-            print("Nama Depan : ${firstNameController.text}");
-            print("Nama Belakang : ${lastNameController.text}");
-            print("Email : ${emailController.text}");
-            print("No. Telpon : ${noTelponController.text}");
-            print("No. KTP : ${noKTPController.text}");
-          }, "assets/icon/icon_disket.png")
+          // P3: simpan profile dengan validasi + SnackBar feedback
+          ResUseAbleWidget().btnPrimaryCustomIcon(
+              "Simpan Profile", _saveProfile, "assets/icon/icon_disket.png"),
         ],
       ),
     );

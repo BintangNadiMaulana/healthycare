@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:latihan_ui/Screen/home_page.dart';
-import 'package:latihan_ui/Screen/profile_page.dart';
 import 'package:latihan_ui/Screen/register_page.dart';
 import 'package:latihan_ui/Utils/Widgets/reusable_widget.dart';
 import 'package:latihan_ui/Utils/custom_color.dart';
@@ -26,6 +25,42 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  // P3: validasi form sebelum login
+  void _doLogin() {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+
+    if (email.isEmpty) {
+      _showSnackBar("Email tidak boleh kosong");
+      return;
+    }
+    if (!email.contains('@') || !email.contains('.')) {
+      _showSnackBar("Format email tidak valid");
+      return;
+    }
+    if (password.isEmpty) {
+      _showSnackBar("Password tidak boleh kosong");
+      return;
+    }
+    if (password.length < 6) {
+      _showSnackBar("Password minimal 6 karakter");
+      return;
+    }
+
+    Navigator.push(context, MaterialPageRoute(
+        builder: (context) => const HomePage()));
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: CustomColor.primaryColor,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,25 +68,22 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-
-  // ini register body
   Widget _loginBody(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 20),
+      padding: const EdgeInsets.only(left: 20),
       child: ListView(
         children: [
-          // text hai, selamat datang
           Padding(
             padding: const EdgeInsets.only(top: 110, bottom: 4),
             child: Row(
               children: [
-                Text("Hai, ", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28),),
-                Text("Selamat Datang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28, fontWeight: FontWeight.bold),),
+                Text("Hai, ", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28)),
+                Text("Selamat Datang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28, fontWeight: FontWeight.bold)),
               ],
-
             ),
           ),
-          Text("Silahkan login untuk melanjutkan", style: TextStyle(color: CustomColor.secondaryColor, fontSize: 12, fontWeight: FontWeight.w600)),
+          Text("Silahkan login untuk melanjutkan",
+              style: TextStyle(color: CustomColor.secondaryColor, fontSize: 12, fontWeight: FontWeight.w600)),
           Image.asset("assets/images/login_image.png"),
           ResUseAbleWidget().primaryColorText("Email"),
           ResUseAbleWidget().customForm(_emailController, "Masukan Email Anda"),
@@ -61,34 +93,38 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ResUseAbleWidget().primaryColorText("Password"),
-                Text("Lupa password anda ?", style:  TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w600),),
+                // P3: tombol lupa password berfungsi
+                GestureDetector(
+                  onTap: () => _showSnackBar("Fitur lupa password akan segera hadir"),
+                  child: Text("Lupa password anda ?",
+                      style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w600)),
+                ),
               ],
             ),
           ),
-          ResUseAbleWidget().customFormPassword(_passwordController, "Masukan Password Anda", (){
+          ResUseAbleWidget().customFormPassword(_passwordController, "Masukan Password Anda", () {
             setState(() {
               _showPassword = !_showPassword;
             });
           }, _showPassword),
           Padding(
             padding: const EdgeInsets.only(top: 40, bottom: 30),
-            child: ResUseAbleWidget().btnMain("Login", (){
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => const HomePage()));
-            }),
+            // P3: panggil _doLogin() dengan validasi
+            child: ResUseAbleWidget().btnMain("Login", _doLogin),
           ),
           Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Belum punya akun? ", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w400),),
+                Text("Belum punya akun? ",
+                    style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w400)),
                 GestureDetector(
-                    onTap: (){
-                      // route to register page
+                    onTap: () {
                       Navigator.push(context, MaterialPageRoute(
                           builder: (context) => const RegisterPage()));
                     },
-                    child: const Text("Daftar sekarang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14,fontWeight: FontWeight.w600),))
+                    child: const Text("Daftar sekarang",
+                        style: TextStyle(color: CustomColor.primaryColor, fontSize: 14, fontWeight: FontWeight.w600)))
               ],
             ),
           ),

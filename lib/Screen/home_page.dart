@@ -16,10 +16,38 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TextEditingController searchController = TextEditingController();
 
+  // P3: state untuk tab kategori yang aktif
+  int _selectedCategoryIndex = 0;
+  final List<String> _categories = ["All Product", "Layanan Kesehatan", "Alat Kesehatan"];
+
+  // P3: state untuk query pencarian
+  String _searchQuery = "";
+
+  @override
+  void initState() {
+    super.initState();
+    // P3: listener untuk search bar
+    searchController.addListener(() {
+      setState(() {
+        _searchQuery = searchController.text.trim();
+      });
+    });
+  }
+
   @override
   void dispose() {
     searchController.dispose();
     super.dispose();
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: CustomColor.primaryColor,
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 
   @override
@@ -27,343 +55,289 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Image.asset("assets/icon/icon_navigator.png"),
+        // P3: ikon navigator berfungsi
+        leading: GestureDetector(
+          onTap: () => _showSnackBar("Menu navigasi akan segera hadir"),
+          child: Image.asset("assets/icon/icon_navigator.png"),
+        ),
         actions: [
-          Image.asset("assets/icon/icon_trolly.png"),
-          Image.asset("assets/icon/icon_bell.png"),
+          // P3: ikon cart berfungsi
+          GestureDetector(
+            onTap: () => _showSnackBar("Keranjang belanja akan segera hadir"),
+            child: Image.asset("assets/icon/icon_trolly.png"),
+          ),
+          // P3: ikon notifikasi berfungsi
+          GestureDetector(
+            onTap: () => _showSnackBar("Notifikasi akan segera hadir"),
+            child: Image.asset("assets/icon/icon_bell.png"),
+          ),
         ],
       ),
-      body: homeBody(context),
+      body: _homeBody(context),
     );
   }
 
-  Widget homeBody(BuildContext context) {
-    return Container(
-      child: ListView(
-        children: [
-          HomeContainer(),
-          SpecialServiceContainer(),
-          InspectionTrackContainer(),
+  Widget _homeBody(BuildContext context) {
+    return ListView(
+      children: [
+        HomeContainer(),
+        SpecialServiceContainer(),
+        InspectionTrackContainer(),
 
-          // search section
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.only(left: 20, right: 30, top: 20),
-                padding: EdgeInsets.all(20),
-                decoration:
-                    BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+        // search section
+        Row(
+          children: [
+            // P3: tombol filter berfungsi
+            GestureDetector(
+              onTap: () => _showSnackBar("Filter produk akan segera hadir"),
+              child: Container(
+                margin: const EdgeInsets.only(left: 20, right: 30, top: 20),
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
                 child: Image.asset("assets/icon/icon_filter.png"),
               ),
-              Container(
-                width: 265,
-                  child: ResUseAbleWidget().customForm(searchController, "Search")),
+            ),
+            Container(
+              width: 265,
+              child: ResUseAbleWidget().customForm(searchController, "Search"),
+            ),
+          ],
+        ),
 
+        // P3: info hasil pencarian
+        if (_searchQuery.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(left: 20, top: 12),
+            child: Text(
+              "Hasil pencarian: \"$_searchQuery\"",
+              style: const TextStyle(
+                  color: CustomColor.secondaryColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600),
+            ),
+          ),
+
+        // P3: tab kategori interaktif
+        Container(
+          margin: const EdgeInsets.only(top: 47),
+          height: 40,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: _categories.length,
+            itemBuilder: (context, index) {
+              final bool isSelected = _selectedCategoryIndex == index;
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _selectedCategoryIndex = index;
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 7, bottom: 7),
+                  margin: const EdgeInsets.only(left: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: isSelected ? CustomColor.primaryColor : Colors.white,
+                  ),
+                  height: 30,
+                  child: Center(
+                    child: Text(
+                      _categories[index],
+                      style: TextStyle(
+                        color: isSelected ? Colors.white : CustomColor.primaryColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+
+        // list produk
+        Container(
+          margin: const EdgeInsets.only(top: 26),
+          height: 200,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              _buildProductCard("Suntik Steril", "Rp 10.000", "Ready Stock"),
+              const SizedBox(width: 15),
+              _buildProductCard("Suntik Steril", "Rp 10.000", "Ready Stock"),
+              const SizedBox(width: 15),
+              _buildProductCard("Suntik Steril", "Rp 10.000", "Ready Stock"),
             ],
-
           ),
-          // list kategori
+        ),
+
+        // text pilih tipe layanan
+        Container(
+          margin: const EdgeInsets.only(top: 40, bottom: 30, left: 20),
+          child: ResUseAbleWidget().primaryColorText("Pilih Tipe Layanan Kesehatan Anda"),
+        ),
+
+        // card layanan 1
+        _buildLayananCard(
+          title: "PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja",
+          price: "Rp 1.400.000",
+          location: "Lenmarc Surabaya",
+          address: "Dukuh Pakis, Surabaya",
+          image: "assets/images/hospital1_image.png",
+        ),
+
+        // card layanan 2
+        _buildLayananCard(
+          title: "PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja",
+          price: "Rp 1.800.000",
+          location: "Lenmarc Jakarta",
+          address: "Menteng, Jakarta",
+          image: "assets/images/hospital2_image.png",
+        ),
+      ],
+    );
+  }
+
+  // P3: widget produk dipisah agar tidak duplikat
+  Widget _buildProductCard(String name, String price, String status) {
+    return Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.white),
+      width: 160,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 25),
+            child: Center(child: Image.asset("assets/images/mikroskop_image.png")),
+          ),
           Container(
-            margin: EdgeInsets.only(top: 47),
-            height: 40,
-            child: ListView(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.only(top: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: EdgeInsets.only(left: 20, right: 20, top: 7, bottom: 7),
-                  margin: EdgeInsets.only(left: 20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: CustomColor.primaryColor,
-                  ),
-                  height: 30,
-                  child: Center(child: Text("All Product", style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700),)),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 20, right: 20, top: 7, bottom: 7),
-                  margin: EdgeInsets.only(left: 20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.white,
-                  ),
-                  height: 30,
-                  child: Center(child: Text("Layanan Kesehatan", style: TextStyle(color: CustomColor.primaryColor, fontSize: 12, fontWeight: FontWeight.w700),)),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 20, right: 20, top: 7, bottom: 7),
-                  margin: EdgeInsets.only(left: 20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.white,
-                  ),
-                  height: 30,
-                  child: Center(child: Text("Alat Kesehatan", style: TextStyle(color: CustomColor.primaryColor, fontSize: 12, fontWeight: FontWeight.w700),)),
-                ),
-              ],
-
-            ),
-          ),
-          // list produk
-          Container(
-            margin: EdgeInsets.only(top: 26),
-            height: 200,
-            child: ListView(
-              scrollDirection: Axis.horizontal ,
-              children: [
-                Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.white),
-                  width: 160,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25),
-                        child: Center(child: Image.asset("assets/images/mikroskop_image.png")),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 12),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 12, left: 10),
-                              child: Text("Suntik Steril", style: TextStyle(color: CustomColor.secondaryColor, fontSize: 17, fontWeight: FontWeight.w600)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 22, right: 10),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 8, left: 10),
-                                    child:
-                                    Text("Rp 10.000", style: TextStyle(color: CustomColor.orange, fontSize: 12, fontWeight: FontWeight.w600)),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 8),
-                                    padding: EdgeInsets.only(top: 3, left: 5, bottom: 3, right: 5),
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: CustomColor.greenBackground),
-                                    child:
-                                    Center(child: Text("Ready Stock", style: TextStyle(color: CustomColor.green, fontSize: 10, fontWeight: FontWeight.w600))),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(width: 15),
-                Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.white),
-                  width: 160,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25),
-                        child: Center(child: Image.asset("assets/images/mikroskop_image.png")),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 12),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 12, left: 10),
-                              child: Text("Suntik Steril", style: TextStyle(color: CustomColor.secondaryColor, fontSize: 17, fontWeight: FontWeight.w600)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 22, right: 10),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 8, left: 10),
-                                    child:
-                                    Text("Rp 10.000", style: TextStyle(color: CustomColor.orange, fontSize: 12, fontWeight: FontWeight.w600)),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 8),
-                                    padding: EdgeInsets.only(top: 3, left: 5, bottom: 3, right: 5),
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: CustomColor.greenBackground),
-                                    child:
-                                    Center(child: Text("Ready Stock", style: TextStyle(color: CustomColor.green, fontSize: 10, fontWeight: FontWeight.w600))),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(width: 15),
-                Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.white),
-                  width: 160,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25),
-                        child: Center(child: Image.asset("assets/images/mikroskop_image.png")),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 12),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 12, left: 10),
-                              child: Text("Suntik Steril", style: TextStyle(color: CustomColor.secondaryColor, fontSize: 17, fontWeight: FontWeight.w600)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 22, right: 10),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 8, left: 10),
-                                    child:
-                                    Text("Rp 10.000", style: TextStyle(color: CustomColor.orange, fontSize: 12, fontWeight: FontWeight.w600)),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 8),
-                                    padding: EdgeInsets.only(top: 3, left: 5, bottom: 3, right: 5),
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: CustomColor.greenBackground),
-                                    child:
-                                    Center(child: Text("Ready Stock", style: TextStyle(color: CustomColor.green, fontSize: 10, fontWeight: FontWeight.w600))),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          // text pilih tipe layanan
-          Container(
-            margin: EdgeInsets.only(top: 40, bottom: 30, left: 20),
-            child: ResUseAbleWidget().primaryColorText("Pilih Tipe Layanan Kesehatan Anda"),
-          ),
-
-          Container(
-            margin: EdgeInsets.only(top: 40, bottom: 30, left: 20),
-            child:
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14, fontWeight: FontWeight.w600), maxLines: 2,),
-                      SizedBox(height: 12,),
-                      Text("Rp 1.400.000", style: TextStyle(color: CustomColor.orange, fontSize: 14, fontWeight: FontWeight.w600)),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: Image.asset("assets/icon/icon_gedung.png"),
-                            ),
-                            Text("Lenmarc Surabaya", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w600),)
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: Image.asset("assets/icon/icon_location.png"),
-                            ),
-                            Text("Dukuh Pakis, Surabaya", style: TextStyle(color: CustomColor.primaryColor, fontSize: 12, fontWeight: FontWeight.w400),)
-                          ],
-                        ),
-                      ),
-
-                    ],
-                  ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12, left: 10),
+                  child: Text(name,
+                      style: const TextStyle(
+                          color: CustomColor.secondaryColor,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600)),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                    child: Image.asset("assets/images/hospital1_image.png")),
-                ),
-
-              ],
-            ),
-          ),
-
-          Container(
-            margin: EdgeInsets.only(top: 40, bottom: 30, left: 20),
-            child:
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  padding: const EdgeInsets.only(bottom: 22, right: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja", style: TextStyle(color: CustomColor.primaryColor, fontSize: 14, fontWeight: FontWeight.w600), maxLines: 2,),
-                      SizedBox(height: 12,),
-                      Text("Rp 1.800.000", style: TextStyle(color: CustomColor.orange, fontSize: 14, fontWeight: FontWeight.w600)),
                       Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: Image.asset("assets/icon/icon_gedung.png"),
-                            ),
-                            Text("Lenmarc Jakarta", style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w600),)
-                          ],
+                        padding: const EdgeInsets.only(top: 8, left: 10),
+                        child: Text(price,
+                            style: const TextStyle(
+                                color: CustomColor.orange,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600)),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 8),
+                        padding: const EdgeInsets.only(top: 3, left: 5, bottom: 3, right: 5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: CustomColor.greenBackground),
+                        child: Center(
+                          child: Text(status,
+                              style: const TextStyle(
+                                  color: CustomColor.green,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600)),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: Image.asset("assets/icon/icon_location.png"),
-                            ),
-                            Text("Menteng, Jakarta", style: TextStyle(color: CustomColor.primaryColor, fontSize: 12, fontWeight: FontWeight.w400),)
-                          ],
-                        ),
-                      ),
-
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                    child: Image.asset("assets/images/hospital2_image.png")),
-                ),
-
               ],
             ),
           ),
-
-
         ],
+      ),
+    );
+  }
+
+  // P3: widget card layanan dipisah agar tidak duplikat
+  Widget _buildLayananCard({
+    required String title,
+    required String price,
+    required String location,
+    required String address,
+    required String image,
+  }) {
+    return GestureDetector(
+      onTap: () => _showSnackBar("Detail layanan akan segera hadir"),
+      child: Container(
+        margin: const EdgeInsets.only(top: 40, bottom: 30, left: 20),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: const TextStyle(
+                          color: CustomColor.primaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                      maxLines: 2),
+                  const SizedBox(height: 12),
+                  Text(price,
+                      style: const TextStyle(
+                          color: CustomColor.orange,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600)),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: Image.asset("assets/icon/icon_gedung.png"),
+                        ),
+                        Text(location,
+                            style: const TextStyle(
+                                color: CustomColor.greyColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600)),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: Image.asset("assets/icon/icon_location.png"),
+                        ),
+                        Text(address,
+                            style: const TextStyle(
+                                color: CustomColor.primaryColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400)),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              // P1 fix: Expanded dihapus dari dalam ClipRRect
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(18),
+                child: Image.asset(image),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

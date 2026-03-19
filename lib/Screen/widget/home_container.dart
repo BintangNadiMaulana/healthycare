@@ -11,13 +11,13 @@ class HomeContainer extends StatelessWidget {
       margin: const EdgeInsets.only(left: 20, right: 20, top: 50),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          gradient:  const LinearGradient(
+          gradient: const LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [
                 Colors.white,
                 Colors.white,
-                CustomColor.greyGradient
+                CustomColor.greyGradient,
               ]),
           borderRadius: BorderRadius.circular(16)),
       child: Row(
@@ -29,8 +29,7 @@ class HomeContainer extends StatelessWidget {
                 RichText(
                   text: const TextSpan(
                     text: 'Solusi, ',
-                    style: TextStyle(
-                        color: CustomColor.primaryColor, fontSize: 22),
+                    style: TextStyle(color: CustomColor.primaryColor, fontSize: 22),
                     children: <TextSpan>[
                       TextSpan(
                           text: 'Kesehatan Anda',
@@ -41,9 +40,7 @@ class HomeContainer extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 8,
-                ),
+                const SizedBox(height: 8),
                 const Text(
                   "Update informasi seputar kesehatan\nsemua bisa disini !",
                   style: TextStyle(
@@ -51,22 +48,29 @@ class HomeContainer extends StatelessWidget {
                       fontSize: 14,
                       color: CustomColor.secondaryColor),
                 ),
-                const SizedBox(
-                  height: 12,
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 17, vertical: 7),
-                  decoration: BoxDecoration(
-                      color: CustomColor.primaryColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: const Text(
-                    "Selengkapnya",
-                    style: TextStyle(
-                      color: Colors.white,
+                const SizedBox(height: 12),
+                // P3: tombol Selengkapnya berfungsi
+                GestureDetector(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Informasi kesehatan akan segera hadir"),
+                        backgroundColor: CustomColor.primaryColor,
+                        behavior: SnackBarBehavior.floating,
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 7),
+                    decoration: BoxDecoration(
+                        color: CustomColor.primaryColor,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: const Text(
+                      "Selengkapnya",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -83,51 +87,42 @@ class HomeContainer extends StatelessWidget {
                       right: 10,
                       top: -30,
                       left: 10,
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Image.asset(
-                                "assets/images/calendar_image.png", width: 100, height: 100,),
-                            Row(
-                              children: [
-                                Container(
-                                  width: 40,
-                                  height: 8,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                      BorderRadius.circular(20)),
-                                ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                Container(
-                                  height: 8,
-                                  width: 8,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle),
-                                ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                Container(
-                                  height: 8,
-                                  width: 8,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                      child: Column(
+                        children: [
+                          Image.asset("assets/images/calendar_image.png", width: 100, height: 100),
+                          Row(
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 8,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20)),
+                              ),
+                              const SizedBox(width: 12),
+                              Container(
+                                height: 8,
+                                width: 8,
+                                decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle),
+                              ),
+                              const SizedBox(width: 12),
+                              Container(
+                                height: 8,
+                                width: 8,
+                                decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle),
+                              ),
+                            ],
+                          ),
+                        ],
                       ))
                 ],
               ))
         ],
       ),
     );
-
   }
 }

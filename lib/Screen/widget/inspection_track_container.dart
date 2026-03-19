@@ -28,45 +28,37 @@ class InspectionTrackContainer extends StatelessWidget {
                       right: 10,
                       top: -40,
                       left: 10,
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "assets/images/search_image.png", width: 100, height: 100,),
-                            Row(
-                              children: [
-                                Container(
-                                  width: 40,
-                                  height: 8,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                      BorderRadius.circular(20)),
-                                ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                Container(
-                                  height: 8,
-                                  width: 8,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle),
-                                ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                Container(
-                                  height: 8,
-                                  width: 8,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                      child: Column(
+                        children: [
+                          Image.asset("assets/images/search_image.png", width: 100, height: 100),
+                          Row(
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 8,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20)),
+                              ),
+                              const SizedBox(width: 12),
+                              Container(
+                                height: 8,
+                                width: 8,
+                                decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle),
+                              ),
+                              const SizedBox(width: 12),
+                              Container(
+                                height: 8,
+                                width: 8,
+                                decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle),
+                              ),
+                            ],
+                          ),
+                        ],
                       ))
                 ],
               )),
@@ -74,13 +66,12 @@ class InspectionTrackContainer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Track Pemeriksaan", style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: CustomColor.primaryColor,
-                    fontSize: 22)),
-                const SizedBox(
-                  height: 8,
-                ),
+                const Text("Track Pemeriksaan",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: CustomColor.primaryColor,
+                        fontSize: 22)),
+                const SizedBox(height: 8),
                 const Text(
                   "Kamu dapat mengecek progress\npemeriksaanmu disini",
                   style: TextStyle(
@@ -88,29 +79,38 @@ class InspectionTrackContainer extends StatelessWidget {
                       fontSize: 14,
                       color: CustomColor.secondaryColor),
                 ),
-                const SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  children: const [
-                    Text(
-                      "Track",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                        color: CustomColor.primaryColor,
+                const SizedBox(height: 12),
+                // P3: tombol Track berfungsi
+                GestureDetector(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Track pemeriksaan akan segera hadir"),
+                        backgroundColor: CustomColor.primaryColor,
+                        behavior: SnackBarBehavior.floating,
                       ),
-                    ),
-                    SizedBox(width: 10,),
-                    Icon(Icons.arrow_forward, color: CustomColor.primaryColor)
-                  ],
-                )
+                    );
+                  },
+                  child: const Row(
+                    children: [
+                      Text(
+                        "Track",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                          color: CustomColor.primaryColor,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Icon(Icons.arrow_forward, color: CustomColor.primaryColor),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
         ],
       ),
     );
-
   }
 }
