@@ -14,29 +14,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController searchController = TextEditingController();
+  // P5: private controller (tambah _ di depan)
+  final TextEditingController _searchController = TextEditingController();
 
-  // P3: state untuk tab kategori yang aktif
   int _selectedCategoryIndex = 0;
   final List<String> _categories = ["All Product", "Layanan Kesehatan", "Alat Kesehatan"];
-
-  // P3: state untuk query pencarian
   String _searchQuery = "";
 
   @override
   void initState() {
     super.initState();
-    // P3: listener untuk search bar
-    searchController.addListener(() {
+    _searchController.addListener(() {
       setState(() {
-        _searchQuery = searchController.text.trim();
+        _searchQuery = _searchController.text.trim();
       });
     });
   }
 
   @override
   void dispose() {
-    searchController.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 
@@ -55,18 +52,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        // P3: ikon navigator berfungsi
         leading: GestureDetector(
           onTap: () => _showSnackBar("Menu navigasi akan segera hadir"),
           child: Image.asset("assets/icon/icon_navigator.png"),
         ),
         actions: [
-          // P3: ikon cart berfungsi
           GestureDetector(
             onTap: () => _showSnackBar("Keranjang belanja akan segera hadir"),
             child: Image.asset("assets/icon/icon_trolly.png"),
           ),
-          // P3: ikon notifikasi berfungsi
           GestureDetector(
             onTap: () => _showSnackBar("Notifikasi akan segera hadir"),
             child: Image.asset("assets/icon/icon_bell.png"),
@@ -80,31 +74,31 @@ class _HomePageState extends State<HomePage> {
   Widget _homeBody(BuildContext context) {
     return ListView(
       children: [
-        HomeContainer(),
-        SpecialServiceContainer(),
-        InspectionTrackContainer(),
+        const HomeContainer(),
+        const SpecialServiceContainer(),
+        const InspectionTrackContainer(),
 
         // search section
         Row(
           children: [
-            // P3: tombol filter berfungsi
             GestureDetector(
               onTap: () => _showSnackBar("Filter produk akan segera hadir"),
               child: Container(
                 margin: const EdgeInsets.only(left: 20, right: 30, top: 20),
                 padding: const EdgeInsets.all(20),
-                decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                decoration: const BoxDecoration(
+                    color: Colors.white, shape: BoxShape.circle),
+                // P5: ReusableWidget (bukan ResUseAbleWidget)
                 child: Image.asset("assets/icon/icon_filter.png"),
               ),
             ),
             Container(
               width: 265,
-              child: ResUseAbleWidget().customForm(searchController, "Search"),
+              child: ReusableWidget().customForm(_searchController, "Search"),
             ),
           ],
         ),
 
-        // P3: info hasil pencarian
         if (_searchQuery.isNotEmpty)
           Padding(
             padding: const EdgeInsets.only(left: 20, top: 12),
@@ -117,7 +111,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
-        // P3: tab kategori interaktif
+        // tab kategori interaktif
         Container(
           margin: const EdgeInsets.only(top: 47),
           height: 40,
@@ -134,18 +128,23 @@ class _HomePageState extends State<HomePage> {
                   });
                 },
                 child: Container(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 7, bottom: 7),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 7, bottom: 7),
                   margin: const EdgeInsets.only(left: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: isSelected ? CustomColor.primaryColor : Colors.white,
+                    color: isSelected
+                        ? CustomColor.primaryColor
+                        : Colors.white,
                   ),
                   height: 30,
                   child: Center(
                     child: Text(
                       _categories[index],
                       style: TextStyle(
-                        color: isSelected ? Colors.white : CustomColor.primaryColor,
+                        color: isSelected
+                            ? Colors.white
+                            : CustomColor.primaryColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
                       ),
@@ -176,10 +175,9 @@ class _HomePageState extends State<HomePage> {
         // text pilih tipe layanan
         Container(
           margin: const EdgeInsets.only(top: 40, bottom: 30, left: 20),
-          child: ResUseAbleWidget().primaryColorText("Pilih Tipe Layanan Kesehatan Anda"),
+          child: ReusableWidget().primaryColorText("Pilih Tipe Layanan Kesehatan Anda"),
         ),
 
-        // card layanan 1
         _buildLayananCard(
           title: "PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja",
           price: "Rp 1.400.000",
@@ -188,7 +186,6 @@ class _HomePageState extends State<HomePage> {
           image: "assets/images/hospital1_image.png",
         ),
 
-        // card layanan 2
         _buildLayananCard(
           title: "PCR Swab Test (Drive Thru)\nHasil 1 Hari Kerja",
           price: "Rp 1.800.000",
@@ -200,19 +197,20 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // P3: widget produk dipisah agar tidak duplikat
   Widget _buildProductCard(String name, String price, String status) {
     return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.white),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16), color: Colors.white),
       width: 160,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 25),
-            child: Center(child: Image.asset("assets/images/mikroskop_image.png")),
+            child: Center(
+                child: Image.asset("assets/images/mikroskop_image.png")),
           ),
-          Container(
+          Padding(
             padding: const EdgeInsets.only(top: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -240,7 +238,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 8),
-                        padding: const EdgeInsets.only(top: 3, left: 5, bottom: 3, right: 5),
+                        padding: const EdgeInsets.only(
+                            top: 3, left: 5, bottom: 3, right: 5),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
                             color: CustomColor.greenBackground),
@@ -263,7 +262,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // P3: widget card layanan dipisah agar tidak duplikat
   Widget _buildLayananCard({
     required String title,
     required String price,
@@ -330,7 +328,6 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 20),
-              // P1 fix: Expanded dihapus dari dalam ClipRRect
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(18),
                 child: Image.asset(image),

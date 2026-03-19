@@ -12,29 +12,29 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
 
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController noKTPController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController noTelponController = TextEditingController();
+  // P5: semua controller dibuat private (tambah _ di depan)
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _noKTPController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _noTelponController = TextEditingController();
 
   @override
   void dispose() {
-    firstNameController.dispose();
-    lastNameController.dispose();
-    noKTPController.dispose();
-    emailController.dispose();
-    noTelponController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _noKTPController.dispose();
+    _emailController.dispose();
+    _noTelponController.dispose();
     super.dispose();
   }
 
-  // P3: validasi dan feedback saat simpan profile
   void _saveProfile() {
-    final firstName = firstNameController.text.trim();
-    final lastName = lastNameController.text.trim();
-    final email = emailController.text.trim();
-    final noTelpon = noTelponController.text.trim();
-    final noKTP = noKTPController.text.trim();
+    final firstName = _firstNameController.text.trim();
+    final lastName = _lastNameController.text.trim();
+    final email = _emailController.text.trim();
+    final noTelpon = _noTelponController.text.trim();
+    final noKTP = _noKTPController.text.trim();
 
     if (firstName.isEmpty) {
       _showSnackBar("Nama depan tidak boleh kosong");
@@ -61,7 +61,6 @@ class _ProfilePageState extends State<ProfilePage> {
       return;
     }
 
-    // P3: feedback sukses ke user (bukan hanya print ke konsol)
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Profile berhasil disimpan!"),
@@ -103,31 +102,52 @@ class _ProfilePageState extends State<ProfilePage> {
       color: Colors.white,
       child: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 30),
-            child: ResUseAbleWidget().primaryColorText("Nama Depan"),
+          const Padding(
+            padding: EdgeInsets.only(top: 30),
+            // P5: ReusableWidget (bukan ResUseAbleWidget)
+            child: Text("Nama Depan",
+                style: TextStyle(
+                    color: CustomColor.primaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
           ),
-          ResUseAbleWidget().customForm(firstNameController, "Jhon"),
-          Padding(
-            padding: const EdgeInsets.only(top: 30),
-            child: ResUseAbleWidget().primaryColorText("Nama Belakang"),
+          ReusableWidget().customForm(_firstNameController, "Jhon"),
+          const Padding(
+            padding: EdgeInsets.only(top: 30),
+            child: Text("Nama Belakang",
+                style: TextStyle(
+                    color: CustomColor.primaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
           ),
-          ResUseAbleWidget().customForm(lastNameController, "Doe"),
-          Padding(
-            padding: const EdgeInsets.only(top: 30),
-            child: ResUseAbleWidget().primaryColorText("Email"),
+          ReusableWidget().customForm(_lastNameController, "Doe"),
+          const Padding(
+            padding: EdgeInsets.only(top: 30),
+            child: Text("Email",
+                style: TextStyle(
+                    color: CustomColor.primaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
           ),
-          ResUseAbleWidget().customForm(emailController, "Masukan Email Anda"),
-          Padding(
-            padding: const EdgeInsets.only(top: 30),
-            child: ResUseAbleWidget().primaryColorText("No. Telpon"),
+          ReusableWidget().customForm(_emailController, "Masukan Email Anda"),
+          const Padding(
+            padding: EdgeInsets.only(top: 30),
+            child: Text("No. Telpon",
+                style: TextStyle(
+                    color: CustomColor.primaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
           ),
-          ResUseAbleWidget().customForm(noTelponController, "Masukan No. Telpon Anda"),
-          Padding(
-            padding: const EdgeInsets.only(top: 30),
-            child: ResUseAbleWidget().primaryColorText("No. KTP"),
+          ReusableWidget().customForm(_noTelponController, "Masukan No. Telpon Anda"),
+          const Padding(
+            padding: EdgeInsets.only(top: 30),
+            child: Text("No. KTP",
+                style: TextStyle(
+                    color: CustomColor.primaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
           ),
-          ResUseAbleWidget().customForm(noKTPController, "Masukan No. KTP Anda"),
+          ReusableWidget().customForm(_noKTPController, "Masukan No. KTP Anda"),
           Padding(
             padding: const EdgeInsets.only(top: 43, bottom: 43),
             child: Padding(
@@ -135,25 +155,26 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Row(
                 children: [
                   Image.asset("assets/icon/icon_warning.png"),
-                  Expanded(
+                  const Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 12),
+                      padding: EdgeInsets.only(left: 12),
                       child: Text(
                         "Pastikan profile anda terisi dengan benar, data pribadi anda terjamin keamanannya",
                         maxLines: 2,
-                        style: const TextStyle(
+                        // P5: const TextStyle
+                        style: TextStyle(
                             color: CustomColor.greyColor,
                             fontSize: 12,
                             fontWeight: FontWeight.w600),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
           ),
-          // P3: simpan profile dengan validasi + SnackBar feedback
-          ResUseAbleWidget().btnPrimaryCustomIcon(
+          // P5: ReusableWidget (bukan ResUseAbleWidget)
+          ReusableWidget().btnPrimaryCustomIcon(
               "Simpan Profile", _saveProfile, "assets/icon/icon_disket.png"),
         ],
       ),

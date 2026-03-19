@@ -25,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  // P3: validasi form sebelum login
   void _doLogin() {
     final email = _emailController.text.trim();
     final password = _passwordController.text;
@@ -73,58 +72,85 @@ class _LoginPageState extends State<LoginPage> {
       padding: const EdgeInsets.only(left: 20),
       child: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 110, bottom: 4),
+          const Padding(
+            padding: EdgeInsets.only(top: 110, bottom: 4),
             child: Row(
               children: [
-                Text("Hai, ", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28)),
-                Text("Selamat Datang", style: TextStyle(color: CustomColor.primaryColor, fontSize: 28, fontWeight: FontWeight.bold)),
+                // P5: const pada TextStyle yang sebelumnya tidak const
+                Text("Hai, ",
+                    style: TextStyle(
+                        color: CustomColor.primaryColor, fontSize: 28)),
+                Text("Selamat Datang",
+                    style: TextStyle(
+                        color: CustomColor.primaryColor,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold)),
               ],
             ),
           ),
-          Text("Silahkan login untuk melanjutkan",
-              style: TextStyle(color: CustomColor.secondaryColor, fontSize: 12, fontWeight: FontWeight.w600)),
+          const Text(
+            "Silahkan login untuk melanjutkan",
+            style: TextStyle(
+                color: CustomColor.secondaryColor,
+                fontSize: 12,
+                fontWeight: FontWeight.w600),
+          ),
           Image.asset("assets/images/login_image.png"),
-          ResUseAbleWidget().primaryColorText("Email"),
-          ResUseAbleWidget().customForm(_emailController, "Masukan Email Anda"),
+          // P5: ReusableWidget (bukan ResUseAbleWidget)
+          ReusableWidget().primaryColorText("Email"),
+          ReusableWidget().customForm(_emailController, "Masukan Email Anda"),
           Padding(
             padding: const EdgeInsets.only(right: 20, top: 40),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ResUseAbleWidget().primaryColorText("Password"),
-                // P3: tombol lupa password berfungsi
+                ReusableWidget().primaryColorText("Password"),
                 GestureDetector(
                   onTap: () => _showSnackBar("Fitur lupa password akan segera hadir"),
-                  child: Text("Lupa password anda ?",
-                      style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w600)),
+                  child: const Text(
+                    "Lupa password anda ?",
+                    style: TextStyle(
+                        color: CustomColor.greyColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
               ],
             ),
           ),
-          ResUseAbleWidget().customFormPassword(_passwordController, "Masukan Password Anda", () {
+          ReusableWidget().customFormPassword(
+              _passwordController, "Masukan Password Anda", () {
             setState(() {
               _showPassword = !_showPassword;
             });
           }, _showPassword),
           Padding(
             padding: const EdgeInsets.only(top: 40, bottom: 30),
-            // P3: panggil _doLogin() dengan validasi
-            child: ResUseAbleWidget().btnMain("Login", _doLogin),
+            child: ReusableWidget().btnMain("Login", _doLogin),
           ),
           Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Belum punya akun? ",
-                    style: TextStyle(color: CustomColor.greyColor, fontSize: 14, fontWeight: FontWeight.w400)),
+                const Text(
+                  "Belum punya akun? ",
+                  style: TextStyle(
+                      color: CustomColor.greyColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400),
+                ),
                 GestureDetector(
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(
                           builder: (context) => const RegisterPage()));
                     },
-                    child: const Text("Daftar sekarang",
-                        style: TextStyle(color: CustomColor.primaryColor, fontSize: 14, fontWeight: FontWeight.w600)))
+                    child: const Text(
+                      "Daftar sekarang",
+                      style: TextStyle(
+                          color: CustomColor.primaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    )),
               ],
             ),
           ),

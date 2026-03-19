@@ -34,7 +34,7 @@ class InspectionTrackContainer extends StatelessWidget {
                           Image.asset("assets/images/search_image.png",
                               width: 100, height: 100),
                           // P4: ganti inline dots dengan widget reusable
-                          ResUseAbleWidget().indicatorDots(),
+                          ReusableWidget().indicatorDots(),
                         ],
                       ))
                 ],

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:latihan_ui/Utils/custom_color.dart';
 
-class ResUseAbleWidget {
+// P5: rename dari ResUseAbleWidget (typo) menjadi ReusableWidget
+class ReusableWidget {
   Widget primaryColorText(String text) {
     return Text(text,
         style: const TextStyle(
@@ -108,7 +109,8 @@ class ResUseAbleWidget {
     );
   }
 
-  Widget btnPrimaryCustomIcon(String text, VoidCallback function, String iconAssets) {
+  Widget btnPrimaryCustomIcon(
+      String text, VoidCallback function, String iconAssets) {
     return Container(
       height: 48,
       margin: const EdgeInsets.only(right: 20),
@@ -139,8 +141,7 @@ class ResUseAbleWidget {
     );
   }
 
-  // P4: extract indicator dots yang duplikat di 3 widget
-  // Dipakai di HomeContainer, SpecialServiceContainer, InspectionTrackContainer
+  // P4: indicator dots reusable — dipakai di 3 widget card
   Widget indicatorDots() {
     return Row(
       children: [
@@ -156,21 +157,16 @@ class ResUseAbleWidget {
           height: 8,
           width: 8,
           decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle),
+              color: Colors.white, shape: BoxShape.circle),
         ),
         const SizedBox(width: 12),
         Container(
           height: 8,
           width: 8,
           decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle),
+              color: Colors.white, shape: BoxShape.circle),
         ),
       ],
     );
   }
-
-  // P4: categoryContainer dan categoryContainerWhite dihapus karena tidak dipakai
-  // home_page.dart sudah pakai ListView.builder dengan state selection sendiri
 }

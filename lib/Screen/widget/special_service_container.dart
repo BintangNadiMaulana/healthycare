@@ -80,7 +80,7 @@ class SpecialServiceContainer extends StatelessWidget {
                           Image.asset("assets/images/vaccine_image.png",
                               width: 100, height: 100),
                           // P4: ganti inline dots dengan widget reusable
-                          ResUseAbleWidget().indicatorDots(),
+                          ReusableWidget().indicatorDots(),
                         ],
                       ))
                 ],

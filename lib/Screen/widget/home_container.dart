@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../Utils/Widgets/reusable_widget.dart';
 import '../../Utils/custom_color.dart';
 
+// P5: ReusableWidget dipakai (bukan ResUseAbleWidget)
 class HomeContainer extends StatelessWidget {
   const HomeContainer({Key? key}) : super(key: key);
 
@@ -92,7 +93,7 @@ class HomeContainer extends StatelessWidget {
                           Image.asset("assets/images/calendar_image.png",
                               width: 100, height: 100),
                           // P4: ganti inline dots dengan widget reusable
-                          ResUseAbleWidget().indicatorDots(),
+                          ReusableWidget().indicatorDots(),
                         ],
                       ))
                 ],
