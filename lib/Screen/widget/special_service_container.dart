@@ -3,7 +3,7 @@ import '../../Utils/Widgets/reusable_widget.dart';
 import '../../Utils/custom_color.dart';
 
 class SpecialServiceContainer extends StatelessWidget {
-  const SpecialServiceContainer({Key? key}) : super(key: key);
+  const SpecialServiceContainer({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
       title: 'Healthy Care',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primaryColor: CustomColor.primaryColor,
         colorScheme: ColorScheme.fromSeed(
           seedColor: CustomColor.primaryColor,
-          primary: CustomColor.primaryColor,
         ),
         useMaterial3: false,
       ),

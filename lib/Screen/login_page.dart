@@ -3,7 +3,7 @@ import 'package:healthycare/Utils/Widgets/reusable_widget.dart';
 import 'package:healthycare/Utils/custom_color.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();

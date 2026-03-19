@@ -3,7 +3,7 @@ import '../../Utils/Widgets/reusable_widget.dart';
 import '../../Utils/custom_color.dart';
 
 class HomeContainer extends StatelessWidget {
-  const HomeContainer({Key? key}) : super(key: key);
+  const HomeContainer({super.key});
 
   @override
   Widget build(BuildContext context) {

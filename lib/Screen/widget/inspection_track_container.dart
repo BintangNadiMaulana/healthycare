@@ -3,7 +3,7 @@ import '../../Utils/Widgets/reusable_widget.dart';
 import '../../Utils/custom_color.dart';
 
 class InspectionTrackContainer extends StatelessWidget {
-  const InspectionTrackContainer({Key? key}) : super(key: key);
+  const InspectionTrackContainer({super.key});
 
   @override
   Widget build(BuildContext context) {

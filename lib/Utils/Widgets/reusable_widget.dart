@@ -100,7 +100,6 @@ class ReusableWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(),
             Expanded(
               child: Center(
                 child: Text(
@@ -139,7 +138,6 @@ class ReusableWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(),
             Expanded(
               child: Center(
                 child: Text(

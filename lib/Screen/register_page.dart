@@ -3,7 +3,7 @@ import 'package:healthycare/Utils/Widgets/reusable_widget.dart';
 import 'package:healthycare/Utils/custom_color.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();

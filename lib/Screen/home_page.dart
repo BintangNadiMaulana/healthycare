@@ -8,7 +8,7 @@ import 'package:healthycare/Model/product_model.dart';
 import 'package:healthycare/Model/layanan_model.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -164,7 +164,7 @@ class _HomePageState extends State<HomePage> {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: dummyProducts.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 15),
+            separatorBuilder: (context, index) => const SizedBox(width: 15),
             itemBuilder: (context, index) =>
                 _buildProductCard(dummyProducts[index]),
           ),
