@@ -19,12 +19,12 @@ class ReusableWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: const Color(0x809E9E9E),
+            color: Color(0x809E9E9E),
             spreadRadius: 0.5,
             blurRadius: 0.5,
-            offset: const Offset(0, 1),
+            offset: Offset(0, 1),
           ),
         ],
       ),
@@ -54,12 +54,12 @@ class ReusableWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: const Color(0x809E9E9E),
+            color: Color(0x809E9E9E),
             spreadRadius: 0.5,
             blurRadius: 0.5,
-            offset: const Offset(0, 1),
+            offset: Offset(0, 1),
           ),
         ],
       ),

@@ -28,8 +28,8 @@ class HomeContainer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RichText(
-                  text: const TextSpan(
+                const RichText(
+                  text: TextSpan(
                     text: 'Solusi, ',
                     style: TextStyle(
                       color: CustomColor.primaryColor,
