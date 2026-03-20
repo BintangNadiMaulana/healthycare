@@ -17,8 +17,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TextEditingController _searchController = TextEditingController();
 
-  int    _selectedCategoryIndex = 0;
-  String _searchQuery           = "";
+  int _selectedCategoryIndex = 0;
+  String _searchQuery = "";
 
   final List<String> _categories = [
     "All Product",
@@ -70,11 +70,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: _homeBody(context),
+      body: _homeBody(),
     );
   }
 
-  Widget _homeBody(BuildContext context) {
+  Widget _homeBody() {
     return ListView(
       children: [
         const HomeContainer(),
@@ -163,6 +163,7 @@ class _HomePageState extends State<HomePage> {
           height: 200,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.only(left: 20, right: 20),
             itemCount: dummyProducts.length,
             separatorBuilder: (context, index) => const SizedBox(width: 15),
             itemBuilder: (context, index) =>
