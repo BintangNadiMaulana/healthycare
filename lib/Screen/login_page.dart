@@ -10,7 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _emailController    = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   bool _showPassword = true;
@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _doLogin() {
-    final email    = _emailController.text.trim();
+    final email = _emailController.text.trim();
     final password = _passwordController.text;
 
     if (email.isEmpty) {
@@ -59,11 +59,11 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _loginBody(context),
+      body: _loginBody(),
     );
   }
 
-  Widget _loginBody(BuildContext context) {
+  Widget _loginBody() {
     return Container(
       padding: const EdgeInsets.only(left: 20),
       child: ListView(

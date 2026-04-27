@@ -11,10 +11,10 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController  = TextEditingController();
-  final TextEditingController _noKTPController     = TextEditingController();
-  final TextEditingController _emailController     = TextEditingController();
-  final TextEditingController _noTelponController  = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _noKTPController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _noTelponController = TextEditingController();
 
   @override
   void dispose() {
@@ -28,10 +28,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _saveProfile() {
     final firstName = _firstNameController.text.trim();
-    final lastName  = _lastNameController.text.trim();
-    final email     = _emailController.text.trim();
-    final noTelpon  = _noTelponController.text.trim();
-    final noKTP     = _noKTPController.text.trim();
+    final lastName = _lastNameController.text.trim();
+    final email = _emailController.text.trim();
+    final noTelpon = _noTelponController.text.trim();
+    final noKTP = _noKTPController.text.trim();
 
     if (firstName.isEmpty) {
       _showSnackBar("Nama depan tidak boleh kosong");
@@ -97,11 +97,11 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ],
       ),
-      body: _profileBody(context),
+      body: _profileBody(),
     );
   }
 
-  Widget _profileBody(BuildContext context) {
+  Widget _profileBody() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       margin: const EdgeInsets.symmetric(horizontal: 32),

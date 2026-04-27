@@ -10,15 +10,15 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController _firstNameController          = TextEditingController();
-  final TextEditingController _lastNameController           = TextEditingController();
-  final TextEditingController _noKTPController              = TextEditingController();
-  final TextEditingController _emailController              = TextEditingController();
-  final TextEditingController _noTelponController           = TextEditingController();
-  final TextEditingController _passwordController           = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _noKTPController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _noTelponController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _konfirmasiPasswordController = TextEditingController();
 
-  bool _showPassword        = true;
+  bool _showPassword = true;
   bool _showConfirmPassword = true;
 
   @override
@@ -34,12 +34,12 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _doRegister() {
-    final firstName  = _firstNameController.text.trim();
-    final lastName   = _lastNameController.text.trim();
-    final noKTP      = _noKTPController.text.trim();
-    final email      = _emailController.text.trim();
-    final noTelpon   = _noTelponController.text.trim();
-    final password   = _passwordController.text;
+    final firstName = _firstNameController.text.trim();
+    final lastName = _lastNameController.text.trim();
+    final noKTP = _noKTPController.text.trim();
+    final email = _emailController.text.trim();
+    final noTelpon = _noTelponController.text.trim();
+    final password = _passwordController.text;
     final konfirmasi = _konfirmasiPasswordController.text;
 
     if (firstName.isEmpty) {
@@ -106,11 +106,11 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _registerBody(context),
+      body: _registerBody(),
     );
   }
 
-  Widget _registerBody(BuildContext context) {
+  Widget _registerBody() {
     return Container(
       padding: const EdgeInsets.only(left: 20),
       child: ListView(
