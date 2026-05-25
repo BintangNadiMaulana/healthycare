@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_ui/Screen/login_page.dart';
+import 'package:healthycare/Screen/login_page.dart';
+import 'package:healthycare/Screen/home_page.dart';
+import 'package:healthycare/Screen/register_page.dart';
+import 'package:healthycare/Screen/profile_page.dart';
+import 'package:healthycare/Utils/custom_color.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,15 +12,25 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Latihan UI',
+      title: 'Healthy Care',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: CustomColor.primaryColor,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: CustomColor.primaryColor,
+        ),
+        useMaterial3: false,
       ),
-      home: const LoginPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginPage(),
+        '/home': (context) => const HomePage(),
+        '/register': (context) => const RegisterPage(),
+        '/profile': (context) => const ProfilePage(),
+      },
     );
   }
 }
